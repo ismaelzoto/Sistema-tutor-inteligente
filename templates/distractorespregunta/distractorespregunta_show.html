@@ -1,0 +1,41 @@
+
+{% extends 'base/base.html' %}
+
+{% block content %}
+
+    <div class="row">
+    <div class="col s12 m12 l12">
+        <table class="table-bordered">
+            <tr>
+                <td width="15%">
+                    <b>ID:</b>
+                </td>
+                <td>
+                    {{ object.id_distractor}}
+                </td>
+            </tr>
+            <tr>
+               <td width="15%">
+                   <b>Distractor:</b>
+               </td>
+               <td>
+                   {{ object.distractor }}
+               </td>
+            </tr>
+            <tr>
+               <td width="15%">
+                   <b>Ejercicio:</b>
+               </td>
+               <td>
+                   {{ object.id_ejercicio }}
+               </td>
+            </tr>
+        </table>
+        <a class="btn-floating gradient-45deg-amber-amber tooltipped" data-position="top" data-tooltip="Ok" href="{% url 'distractorespregunta:distractorespreguntabuscar' %}"><i class="material-icons">check</i></a>
+        <a class="btn-floating gradient-45deg-indigo-light-blue tooltipped" data-position="top" data-tooltip="Editar" href="{% url 'distractorespregunta:distractorespreguntaeditar' object.id_distractor %}"><i class="material-icons">create</i></a>
+        <a class="btn-floating red darken-4 tooltipped" data-position="top" data-tooltip="Borrar" href="{% url 'distractorespregunta:distractorespreguntaeliminar' object.id_distractor %}"><i class="material-icons">delete</i></a>
+    </div>
+</div>
+
+
+{% endblock %}

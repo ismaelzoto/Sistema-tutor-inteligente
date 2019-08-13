@@ -1,0 +1,48 @@
+<!--elaborado por: Cesar Pérez Dueñas-->
+{% extends 'base/base.html' %}
+
+{% block content %}
+<div class="row">
+    <div class="col-ml-auto mr-auto">
+        <table class="table-bordered">
+	        <thead>
+		        <tr>
+                    <td>Id : </td>
+                    <td>Numero: </td>
+                    <td>pregunta </td>
+                    <td>inteligencias </td>
+                </tr>
+            </thead>
+            <tbody>
+		        {% if object_list %}
+		        {% for preguntas_test_inteligencia in object_list %}
+		        <tr>
+			        <td>{{ preguntas_test_inteligencia.id_pregunta_test }}</td>
+			        <td>{{ preguntas_test_inteligencia.num_pregunta }}</td>
+                    <td>{{ preguntas_test_inteligencia.pregunta }}</td>
+                    <td>{{ preguntas_test_inteligencia.inteligencias }}</td>
+			        <td>
+                        <a class="btn blue" href="{% url 'preguntas:preguntaseditar' preguntas_test_inteligencia.id_pregunta_test %}"><i class="material-icons">create</i></a>
+                        <a class="btn red" href="{% url 'preguntas:preguntaseliminar' preguntas_test_inteligencia.id_pregunta_test %}"><i class="material-icons">delete</i></a>
+			        </td>
+		        </tr>
+		        {% endfor %}
+
+                {% else %}
+		            <h1>No hay registros de preguntas</h1>
+		        {% endif %}
+            </tbody>
+        </table>
+    </div>
+</div>
+<nav aria-label="Page navigation example">
+  <ul class="pagination">
+    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+    <li class="page-item"><a class="page-link" href="#">1</a></li>
+    <li class="page-item"><a class="page-link" href="#">2</a></li>
+    <li class="page-item"><a class="page-link" href="#">3</a></li>
+    <li class="page-item"><a class="page-link" href="#">Next</a></li>
+  </ul>
+</nav>
+
+{% endblock%}

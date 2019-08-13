@@ -1,0 +1,75 @@
+<!--Realizado por Karina Perez Perez -->
+{% extends 'base/base.html' %}
+
+{% block content %}
+<div class="row">
+    <div class="col s12 m12 l12">
+        <h4>Buscar</h4>
+        <form method="get">
+            <div class="col s10 m10 l10">
+                {{ filter.form.nombre_curso }}
+            </div>
+            <div class="col s2 m2 l2">
+                <button class="btn btn-success btn-large" name="Search" class="header-search-input z-depth-2" type="submit"><i class="large material-icons">search</i></button>
+            </div>
+        </form>
+        <table class="striped">
+	        <thead>
+		        <tr>
+			        <th width="10%">id de curso</th>
+			        <th width="60%">Nombre del curso</th>
+                    <th width="15%">Nivel</th>
+                    <th width="5%">Mostrar</th>
+                    <th width="5%">Editar</th>
+                    <th width="5%">Borrar</th>
+                </tr>
+            </thead>
+            <tbody>
+		        {% if filter.qs %}
+		        {% for curso in filter.qs %}
+		        <tr>
+                    <td>{{ curso.id_curso }}</td>
+			        <td>{{ curso.nombre_curso }}</td>
+                    <td>{{ curso.nivel }}</td>
+			        <td>
+                        <a class="btn-floating gradient-45deg-amber-amber" href="{% url 'cursos:cursomostrar' curso.id_curso %}"><i class="material-icons">zoom_in</i></a>
+                    </td>
+                    <td>
+				        <a class="btn-floating gradient-45deg-indigo-light-blue" href="{% url 'cursos:cursoeditar' curso.id_curso %}"><i class="material-icons">create</i></a>
+                    </td>
+                    <td>
+				        <a class="btn-floating red darken-4" href="{% url 'cursos:cursoeliminar' curso.id_curso %}"><i class="material-icons">delete</i></a>
+			        </td>
+		        </tr>
+		        {% endfor %}
+
+                {% else %}
+		            <h1>No hay registros de resultados de curso</h1>
+		    {% endif %}
+            </tbody>
+        </table>
+    </div>
+</div>
+    <div class="row">
+        <div class="col s12 m12 l12">
+            <ul class="pagination center">
+	            <li>
+		        {% if page_obj.has_previous %}
+       	            <a class="btn blue" href="?page={{ page_obj.previous_page_number }}"><i class="material-icons">navigate_before</i></a>
+		        {% endif %}
+                </li>
+	            <li>
+		        {% if page_obj.has_next %}
+     	            <a class="btn red" href="?page={{ page_obj.next_page_number }}"><i class="material-icons">navigate_next</i></a>
+    	        {% endif %}
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="fixed-action-btn">
+        <a class="btn-floating btn-large red tooltipped" data-position="top" data-tooltip="Agregar" href="{% url 'cursos:cursocrear' %}">
+            <i class="large material-icons">add</i>
+        </a>
+    </div>
+ {% endblock%}

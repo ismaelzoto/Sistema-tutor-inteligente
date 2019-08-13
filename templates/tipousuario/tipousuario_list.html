@@ -1,0 +1,49 @@
+
+{% extends 'base/base.html' %}
+
+{% block content %}
+        <h3 class="center">Tipos de usuarios</h3>
+
+
+        <table class="striped">
+	        <thead>
+		        <tr>
+                    <th width="10%">Id</th>
+                    <th width="75%">Tipo Usuario</th>
+                    <th width="5%">Mostrar</th>
+                    <th width="5%">Editar</th>
+                    <th width="5%">Borrar</th>
+                </tr>
+            </thead>
+            <tbody>
+		        {% if object_list %}
+		        {% for tipo_usuario in object_list %}
+		        <tr>
+			        <td>{{ tipo_usuario.id_tipo }}</td>
+			        <td>{{ tipo_usuario.nombre_tipo_usuario }}</td>
+                    <td>
+                        <a class="btn-floating gradient-45deg-amber-amber" href="{% url 'tipousuario:tipomostrar' tipo_usuario.id_tipo %}"><i class="material-icons">zoom_in</i></a>
+                    </td>
+			        <td>
+                        <a class="btn-floating gradient-45deg-indigo-light-blue" href="{% url 'tipousuario:tipoeditar' tipo_usuario.id_tipo %}"><i class="material-icons">create</i></a>
+                    </td>
+                    <td>
+                        <a class="btn-floating red darken-4" href="{% url 'tipousuario:tipoeliminar' tipo_usuario.id_tipo %}"><i class="material-icons">delete</i></a>
+			        </td>
+		        </tr>
+		        {% endfor %}
+
+                {% else %}
+		            <h1>No hay registros de personas</h1>
+		        {% endif %}
+            </tbody>
+        </table>
+
+
+    <div class="fixed-action-btn">
+        <a class="btn-floating btn-large red tooltipped" data-position="top" data-tooltip="Agregar" href="{% url 'tipousuario:tipocrear' %}">
+            <i class="large material-icons">add</i>
+        </a>
+    </div>
+
+{% endblock%}

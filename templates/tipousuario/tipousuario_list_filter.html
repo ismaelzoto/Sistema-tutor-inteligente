@@ -1,0 +1,65 @@
+
+{% extends 'base/base.html' %}
+
+{% block content %}
+    <div class="row">
+        <form method="get">
+
+            <h4>Buscar</h4>
+            <div class="col s10 m10 l10">
+                {{ filter.form.nombre_tipo_usuario }}
+            </div>
+            <div class="col s2 m2 l2">
+                <button class="btn btn-success btn-large" name="Search" class="header-search-input z-depth-2" type="submit"><i class="large material-icons">search</i></button>
+            </div>
+
+    </form>
+    </div>
+    <p>
+
+    </p>
+
+
+    <div class="row">
+        <div class="col s12 m12 l12">
+            <table class="table-bordered">
+                <thead>
+                <tr>
+                    <th width="10%">Id</th>
+                    <th width="75%">Tipo Usuario</th>
+                    <th width="5%">Mostrar</th>
+                    <th width="5%">Editar</th>
+                    <th width="5%">Borrar</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% if filter.qs %}
+                    {% for tipo_usuario in filter.qs %}
+                        <tr>
+                            <td>{{ tipo_usuario.id_tipo }}</td>
+                            <td>{{ tipo_usuario.nombre_tipo_usuario }}</td>
+                            <td>
+                                <a class="btn-floating gradient-45deg-amber-amber" href="{% url 'tipousuario:tipomostrar' tipo_usuario.id_tipo %}"><i class="material-icons">zoom_in</i></a>
+                            </td>
+                            <td>
+                                <a class="btn-floating gradient-45deg-indigo-light-blue" href="{% url 'tipousuario:tipoeditar' tipo_usuario.id_tipo %}"><i class="material-icons">create</i></a>
+                            </td>
+                            <td>
+                                <a class="btn-floating red darken-4" href="{% url 'tipousuario:tipoeliminar' tipo_usuario.id_tipo %}"><i class="material-icons">delete</i></a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                {% else %}
+                    <h3>No hay registros</h3>
+                {% endif %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="fixed-action-btn">
+        <a class="btn-floating btn-large red tooltipped" data-position="top" data-tooltip="Agregar" href="{% url 'tipousuario:tipocrear' %}">
+            <i class="large material-icons">add</i>
+        </a>
+    </div>
+{% endblock%}

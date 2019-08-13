@@ -1,0 +1,61 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+<div class="row">
+    <div class="col s12 m12 l12">
+        <h4>Buscar</h4>
+        <form method="get">
+            <div class="col s10 m10 l10">
+                {{ filter.form.usuario }}
+            </div>
+            <div class="col s2 m2 l2">
+                <button name="Search" class="header-search-input z-depth-2" type="submit"><i class="large material-icons">search</i></button>
+            </div>
+            <p>
+
+             </p>
+        </form>
+        <table class="striped">
+	        <thead>
+		        <tr>
+			        <th width="5%">Id de usuario</th>
+			        <th width="80%">Usuario</th>
+                    <th width="5%">Mostrar</th>
+                    <th width="5%">Editar</th>
+                    <th width="5%">Borrar</th>
+                </tr>
+            </thead>
+            <tbody>
+		        {% if filter.qs %}
+		        {% for datoscuenta in filter.qs %}
+		        <tr>
+			        <td>{{ datoscuenta.id_usuario }}</td>
+			        <td>{{ datoscuenta.usuario }}</td>
+			        <td>
+				         <a class="btn-floating gradient-45deg-amber-amber" href="{% url 'datosusuario:datosusuario_mostrar' datoscuenta.id_usuario %}">Ver</a>
+                    </td>
+                    <td>
+				        <a class="btn-floating gradient-45deg-indigo-light-blue" href="{% url 'datosusuario:datosusuario_editar' datoscuenta.id_usuario %}">Editar</a>
+                    </td>
+                    <td>
+				        <a class="btn-floating red darken-4" href="{% url 'datosusuario:datosusuario_eliminar' datoscuenta.id_usuario %}">Eliminar</a>
+			        </td>
+		        </tr>
+		        {% endfor %}
+
+                {% else %}
+		            <tr>
+                        <td colspan="10"><h1>No Existen Registros Personales</h1></td>
+                    </tr>
+		        {% endif %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+    <div class="fixed-action-btn">
+        <a class="btn-floating btn-large red tooltipped" data-position="top" data-tooltip="Agregar" href="{% url 'datosusuario:datosusuario_crear' %}">
+            <i class="large material-icons">add</i>
+        </a>
+    </div>
+{% endblock %}

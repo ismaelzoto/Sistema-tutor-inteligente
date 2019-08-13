@@ -1,0 +1,33 @@
+
+{% extends 'base/base.html' %}
+
+{% block content %}
+<div class="row">
+    <div class="col s12 m12 l12">
+        <table class="table-bordered">
+           <tr>
+               <td width="15%">
+                   <b>Id:</b>
+               </td>
+               <td>
+                   {{ object.id_tipo }}
+               </td>
+           </tr>
+            <tr>
+               <td width="15%">
+                   <b>Tipo de usuario:</b>
+               </td>
+               <td>
+                   {{ object.nombre_tipo_usuario }}
+               </td>
+           </tr>
+        </table>
+        <a class="btn-floating gradient-45deg-amber-amber tooltipped" data-position="top" data-tooltip="Ok" href="{% url 'tipousuario:tipobuscar' %}"><i class="material-icons">check</i></a>
+        <a class="btn-floating gradient-45deg-indigo-light-blue tooltipped" data-position="top" data-tooltip="Editar" href="{% url 'tipousuario:tipoeditar' tipo_usuario.id_tipo %}"><i class="material-icons">create</i></a>
+        <a class="btn-floating red darken-4 tooltipped" data-position="top" data-tooltip="Borrar" href="{%  url 'tipousuario:tipoeliminar' tipo_usuario.id_tipo %}"><i class="material-icons">delete</i></a>
+    </div>
+</div>
+
+
+
+{% endblock %}

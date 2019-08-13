@@ -1,0 +1,76 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+<div class="row">
+    <div class="col s12 m12 l12">
+        <h4>Buscar</h4>
+        <form method="get">
+            <div class="col s10 m10 l10">
+                Nombre:<br>
+                {{ filter.form.nombre }} <br>
+                Apellido paterno:<br>
+                {{ filter.form.a_paterno }} <br>
+                Apellido materno:<br>
+                {{ filter.form.a_materno }}<br>
+            </div>
+            <div class="col s2 m2 l2">
+                <button name="Search" class="header-search-input z-depth-2" type="submit"><i class="large material-icons">search</i></button>
+            </div>
+            <p>
+
+             </p>
+        </form>
+        <table class="striped">
+	        <thead>
+		        <tr>
+			        <th width="5%">Id de datos</th>
+			        <th width="25%">Nombres</th>
+			        <th width="20%">Apellido paterno</th>
+                    <th width="20%">Apellido materno</th>
+			        <th width="5%">Edad</th>
+                    <th width="5%">Tipo de usuario</th>
+                    <th width="5%">Nombre de usuario</th>
+                    <th width="5%">Mostrar</th>
+                    <th width="5%">Editar</th>
+                    <th width="5%">Borrar</th>
+                </tr>
+            </thead>
+            <tbody>
+		        {% if filter.qs %}
+		        {% for datospersonales in filter.qs %}
+		        <tr>
+			        <td>{{ datospersonales.id_datos }}</td>
+			        <td>{{ datospersonales.nombre }}</td>
+			        <td>{{ datospersonales.a_paterno }}</td>
+			        <td>{{ datospersonales.a_materno }}</td>
+			        <td>{{ datospersonales.edad }}</td>
+			        <td>{{ datospersonales.tipo_usuario }}</td>
+                    <td>{{ datospersonales.datos_cuenta }}</td>
+			        <td>
+				         <a class="btn-floating gradient-45deg-amber-amber" href="{% url 'usuario:datospersonales_mostrar' datospersonales.id_datos %}">Ver</a>
+                    </td>
+                    <td>
+				        <a class="btn-floating gradient-45deg-indigo-light-blue" href="{% url 'usuario:datospersonales_editar' datospersonales.id_datos %}">Editar</a>
+                    </td>
+                    <td>
+				        <a class="btn-floating red darken-4" href="{% url 'usuario:datospersonales_eliminar' datospersonales.id_datos %}">Eliminar</a>
+			        </td>
+		        </tr>
+		        {% endfor %}
+
+                {% else %}
+		            <tr>
+                        <td colspan="10"><h1>No Existen Registros Personales</h1></td>
+                    </tr>
+		        {% endif %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+    <div class="fixed-action-btn">
+        <a class="btn-floating btn-large red tooltipped" data-position="top" data-tooltip="Agregar" href="{% url 'usuario:datospersonales_crear' %}">
+            <i class="large material-icons">add</i>
+        </a>
+    </div>
+{% endblock %}

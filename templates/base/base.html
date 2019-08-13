@@ -1,0 +1,198 @@
+
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+	{% block extrastatic %}
+	{% endblock %}
+
+    <link rel="stylesheet" href="{% static 'css/tooltip.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/horizontal-menu/materialize.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/jquery.dataTables.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/jquery.dataTables_themeroller.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/sweetalert.css' %}" type="text/css">
+
+    <script type="text/javascript" src="{% static 'js/sweetalert.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/alertas.js' %}"></script>
+	<title>{% block title %}Sistema Tutor OpenMind &copy;{% endblock %}</title>
+</head>
+<body>
+<!--Import jQuery before materialize.js-->
+<script type="text/javascript" src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/materialize.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/jquery.dataTables.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/scrollspy.js' %}"></script>
+<!-- Start Page Loading -->
+<div id="loader-wrapper">
+    <div id="loader"></div>
+    <div class="loader-section section-left"></div>
+    <div class="loader-section section-right"></div>
+</div>
+<div class="container">
+    <div class="row">
+        {% block navbar %}
+            <div class="col s12">
+                <ul id="slide-out" class="side-nav">
+                    <li>
+                        <div class="user-view">
+                            <div class="background">
+                                <img src="{% static 'images/office.jpg' %}">
+                            </div>
+                            <a href="#!user"><img class="circle" src="{% static 'images/user.png' %}"></a>
+                            <a href="#!name"><span class="white-text name">Leonel Gonz&aacute;lez Vidales</span></a>
+                            <a href="#!email"><span class="white-text email">leonelgv@gmail.com</span></a>
+                        </div>
+                    </li>
+                    <!--
+                    <ul class="collapsible collapsible-accordion">
+                        <li class="bold"><a class="collapsible-header">Tipos de usuarios</a>
+                            <div class="collapsible-body">
+                                <ul>
+                                    <li><a href="{% url 'tipousuario:tipobuscar' %}">Usuarios</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="bold"><a class="collapsible-header">Inteligencias</a>
+                            <div class="collapsible-body">
+                                <ul>
+                                    <li><a href="{% url 'inteligencias:inteligencia_buscar' %}">Inteligencias</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="bold"><a class="collapsible-header">Cursos</a>
+                            <div class="collapsible-body">
+                                <ul>
+                                    <li><a href="{% url 'cursos:cursobuscar' %}">Cursos</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="bold"><a class="collapsible-header">Temas de los cursos</a>
+                            <div class="collapsible-body">
+                                <ul>
+                                    <li><a href="{% url 'temascursos:temas_curso_buscar' %}">Temas de los cursos</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                    -->
+                    <li><a href="{% url 'usuario:datospersonales_buscar' %}">Usuarios</a></li>
+                    <li><a href="{% url 'datosusuario:datosusuario_buscar' %}">Datos de usuario</a></li>
+                    <li><a href="{% url 'tipousuario:tipobuscar' %}">Tipos de usuarios</a></li>
+                    <li><a href="{% url 'inteligencias:inteligencia_buscar' %}">Inteligencias</a></li>
+                    <li><a href="{% url 'preguntastest:preguntasbuscar' %}">Preguntas</a></li>
+                    <li><a href="{% url 'cursos:cursobuscar' %}">Cursos</a></li>
+                    <li><a href="{% url 'temascursos:temas_curso_buscar' %}">Temas de los cursos</a></li>
+                    <li><a href="{% url 'ejercicios:ejerciciosbuscar' %}">Ejercicios</a></li>
+                    <li><a href="{% url 'distractorespregunta:distractorespreguntabuscar' %}">Distractores</a></li>
+
+                    <li><div class="divider"></div></li>
+                    <li><a href="/about">Acerca de</a></li>
+                    <li><a class="subheader">&copy; 2019 OpenMind</a></li>
+                </ul>
+                <div class="nav-wrapper">
+                    <nav class="blue darken-4 page-header">
+                        <div class="nav-wrapper container">
+                            <a href="#" data-activates="slide-out" class="show-on-large button-collapse"><i class="material-icons">menu</i></a>
+                            <a href="/" class="brand-logo">OpenMind</a>
+                            <ul class="right hide-on-med-and-down">
+                                <li><a href="salir.py"><i class="material-icons">exit_to_app</i></a></li>
+                                <!-- Dropdown Trigger -->
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+            </div>
+	{% endblock %}
+
+    <div class="row">
+        <div class="col l1 s1">
+
+        </div>
+        <div class="col l10 s10">
+	    {% block content %}
+            <h4>	Bloque de contenido		</h4>
+        {% endblock %}
+
+        {% block footer %}
+
+        {% endblock%}
+        </div>
+        <div class="col l1 s1">
+
+        </div>
+    </div>
+</div>
+<p></p>
+
+<footer class="page-footer">
+    <div class="container">
+        <div class="row">
+            <div class="col l6 s12">
+                <h5 class="white-text">&copy; 2019 OpenMind</h5>
+            </div>
+        </div>
+    </div>
+    <div class="footer-copyright">
+        <div class="container">
+            <div class="row">
+                <div class="col l6 s12">
+                    <a class="purple-text text-lighten-3" href="http://www.italtamirano.edu.mx/" target="_blank">Instituto Tecnológico de Cd. Altamirano</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!--  Scripts-->
+<!--Import jQuery before materialize.js-->
+<script type="text/javascript" src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/materialize.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/jquery.dataTables.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/data-tables-script.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/init.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/jquery.collapsible.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/sweetalert.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/scrollspy.js' %}"></script>
+<!--scrollbar-->
+<script type="text/javascript" src="{% static 'js/perfect-scrollbar.min.js' %}"></script>
+<!--plugins.js - Some Specific JS codes for Plugin Settings-->
+<script type="text/javascript" src="{% static 'js/plugins.js' %}"></script>
+<!--custom-script.js - Add your own theme custom JS-->
+<script type="text/javascript" src="{% static 'js/custom-script.js' %}"></script>
+
+<script type="text/javascript" src="{% static 'js/funcionesAjax.js' %}"></script>
+<script>
+    $(document).ready(function() {
+        $('.collapsible').collapsible();
+        $('.button-collapse').sideNav({});
+        $('.materialboxed').materialbox();
+        $(".button-collapse").sideNav();
+        $('.scrollspy').scrollSpy();
+        $('.modal').modal();
+        $('.sidenav').sidenav();
+        $('.fixed-action-btn').floatingActionButton();
+    });
+    $(document).ready(function() {
+        $('#usuarios').DataTable( {
+            columnDefs: [
+                {
+                    targets: [ 0, 1, 2 ],
+                    className: 'mdl-data-table__cell--non-numeric'
+                }
+            ]
+        } );
+    } );
+</script>
+	{% block extrajs %}
+	{% endblock %}
+
+
+</body>
+</html>

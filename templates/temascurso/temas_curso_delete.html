@@ -1,0 +1,15 @@
+
+{% extends 'base/base.html' %}
+
+{% block content %}
+    <div class="row">
+        <div class="col s12 m12 l12">
+            <form method="post">
+                {% csrf_token %}
+                <h5>¿Desea eliminar el tema <b>{{ object.nombre_temas }}</b> del curso <b>{{ object.curso }} </b>?</h5>
+                <button class="btn btn-danger" type="submit">Sí, eliminar</button>
+                <a class= "btn btn-default" href="{% url 'temascursos:temas_curso_buscar' %}">Cancelar</a>
+            </form>
+        </div>
+    </div>
+{% endblock %}

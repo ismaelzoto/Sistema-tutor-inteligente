@@ -1,0 +1,50 @@
+
+{% extends 'base/base.html' %}
+
+{% block content %}
+<div class="row">
+    <div class="col s12 m12 l12">
+        <table class="table-bordered">
+            <tr>
+                <td width="15%">
+                    <b>Id:</b>
+                </td>
+                <td>
+                    {{ object.id_pregunta_test }}
+                </td>
+            </tr>
+            <tr>
+                <td width="15%">
+                    <b>Número de pregunta:</b>
+                </td>
+                <td>
+                    {{ object.num_pregunta }}
+                </td>
+            </tr>
+            <tr>
+                <td width="15%">
+                    <b>Pregunta:</b>
+                </td>
+                <td>
+                    {{ object.pregunta }}
+                </td>
+            </tr>
+            <tr>
+                <td width="15%">
+                    <b>Tipo de inteligencia:</b>
+                </td>
+                <td>
+                    {{ object.inteligencias }}
+                </td>
+            </tr>
+        </table>
+
+        <a class="btn-floating gradient-45deg-amber-amber tooltipped" data-position="top" data-tooltip="Ok" href="{% url 'preguntastest:preguntasbuscar' %}"><i class="material-icons">check</i></a>
+        <a class="btn-floating gradient-45deg-indigo-light-blue tooltipped" data-position="top" data-tooltip="Editar" href="{% url 'preguntastest:preguntaseditar' preguntas_test_inteligencia.id_pregunta_test %}"><i class="material-icons">create</i></a>
+        <a class="btn-floating red darken-4 tooltipped" data-position="top" data-tooltip="Borrar" href="{%  url 'preguntastest:preguntaseliminar' preguntas_test_inteligencia.id_pregunta_test %}"><i class="material-icons">delete</i></a>
+    </div>
+</div>
+
+
+
+{% endblock %}

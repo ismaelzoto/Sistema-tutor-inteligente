@@ -1,0 +1,78 @@
+<!-- elaborado por vanessa albarran santos-->
+{% extends 'base/base.html' %}
+
+{% block content %}
+<div class="row">
+    <div class="col s12 m6 l4">
+        {% if object_list %}
+          {% for temas_curso in object_list %}
+ <div class="card blue darken-1">
+        <div class="card-content white-text">
+          <span class="card-title">{{ temas_curso.id_temas }} </span>
+          <p>{{ temas_curso.nombre_temas }} {{ temas_curso.curso }}</p>
+
+        </div>
+        <div class="card-action">
+          <a class="btn btn-primary" href="#">Ver</a>
+				        <a class="btn btn-primary" href="*">Editar</a>
+				        <a class="btn btn-danger" href="*">Eliminar</a>
+        </div>
+      </div>
+    {% endfor %}
+
+                {% else %}
+		            <h1>No hay registros de temas curso</h1>
+		        {% endif %}
+
+    </div>
+</div>
+   <div class="row">
+     <div class="col s12 m12 l12">
+        <table class="striped">
+	        <thead>
+		        <tr>
+			        <td>Id_temas</td>
+			        <td>Nombre_temas</td>
+			        <td>Curso</td>
+                </tr>
+            </thead>
+            <tbody>
+		        {% if object_list %}
+		        {% for temas_curso in object_list %}
+		        <tr>
+			        <td>{{ temas_curso.id_temas }}</td>
+			        <td>{{ temas_curso.nombre_temas }}</td>
+			        <td>{{ temas_curso.curso }}</td>
+			        <td>
+				        <a class="btn" href="{% url 'temascursos:temas_curso_mostrar' temas_curso.id_temas   %}"><i class="material-icons">zoom_in</i></a>
+                        <a class="btn blue" href="{% url 'temascursos:temas_curso_editar' temas_curso.id_temas  %}"><i class="material-icons">create</i></a>
+                        <a class="btn red" href="{% url 'temascursos:temas_curso_eliminar' temas_curso.id_temas  %}"><i class="material-icons">delete</i></a>
+			        </td>
+		        </tr>
+		        {% endfor %}
+
+                {% else %}
+		            <h1>No hay registros de temas curso</h1>
+		        {% endif %}
+            </tbody>
+        </table>
+    </div>
+</>
+    <div class="row">
+        <div class="col s12 m12 l12">
+            <ul class="pagination center">
+	            <li>
+		        {% if page_obj.has_previous %}
+       	            <a class="btn blue" href="?page={{ page_obj.previous_page_number }}"><i class="material-icons">navigate_before</i></a>
+		        {% endif %}
+                </li>
+	            <li>
+		        {% if page_obj.has_next %}
+     	            <a class="btn red" href="?page={{ page_obj.next_page_number }}"><i class="material-icons">navigate_next</i></a>
+    	        {% endif %}
+                </li>
+            </ul>
+        </div>
+    </div>
+
+{% endblock%}

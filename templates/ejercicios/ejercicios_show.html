@@ -1,0 +1,49 @@
+
+{% extends 'base/base.html' %}
+
+{% block content %}
+
+    <div class="row">
+    <div class="col s12 m12 l12">
+        <table class="table-bordered">
+            <tr>
+                <td width="15%">
+                    <b>ID:</b>
+                </td>
+                <td>
+                    {{ object.id_ejercicio}}
+                </td>
+            </tr>
+            <tr>
+               <td width="15%">
+                   <b>Nombre del ejercicio:</b>
+               </td>
+               <td>
+                   {{ object.nombre_ejercicio }}
+               </td>
+            </tr>
+            <tr>
+               <td width="15%">
+                   <b>Puntaje:</b>
+               </td>
+               <td>
+                   {{ object.puntaje }}
+               </td>
+            </tr>
+            <tr>
+               <td width="15%">
+                   <b>Curso:</b>
+               </td>
+               <td>
+                   {{ object.temas_curso }}
+               </td>
+            </tr>
+        </table>
+        <a class="btn-floating gradient-45deg-amber-amber tooltipped" data-position="top" data-tooltip="Ok" href="{% url 'ejercicios:ejerciciosbuscar' %}"><i class="material-icons">check</i></a>
+        <a class="btn-floating gradient-45deg-indigo-light-blue tooltipped" data-position="top" data-tooltip="Editar" href="{% url 'ejercicios:ejercicioseditar' object.id_ejercicio %}"><i class="material-icons">create</i></a>
+        <a class="btn-floating red darken-4 tooltipped" data-position="top" data-tooltip="Borrar" href="{% url 'ejercicios:ejercicioseliminar' object.id_ejercicio %}"><i class="material-icons">delete</i></a>
+    </div>
+</div>
+
+
+{% endblock %}

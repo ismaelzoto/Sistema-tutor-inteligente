@@ -1,0 +1,15 @@
+<!--elaborado por: Cesar Pérez Dueñas-->
+{% extends 'base/base.html' %}
+
+{% block content %}
+    <div class="row">
+        <div class="col s12 m12 l12">
+            <form method="post">
+                {% csrf_token %}
+                <h4>¿Desea eliminar el registro de la pregunta <b>{{ object.pregunta }}</b>?</h4>
+                <button class="btn btn-danger" type="submit">Sí, eliminar</button>
+                <a class= "btn btn-default" href="{% url 'preguntastest:preguntasbuscar' %}">Cancelar</a>
+            </form>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,15 @@
+
+{% extends 'base/base.html' %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-8 ml-auto mr-auto">
+            <form method="post">
+                {% csrf_token %}
+                <h4>¿Desea eliminar el registro de {{ object.nombre_tipo_usuario }}?</h4>
+                <button class="btn btn-danger" type="submit">Sí, eliminar</button>
+                <a class= "btn btn-default" href="{% url 'tipousuario:tipobuscar' %}">Cancelar</a>
+            </form>
+        </div>
+    </div>
+{% endblock %}

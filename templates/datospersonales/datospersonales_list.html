@@ -1,0 +1,62 @@
+<!--Realizado por Jaime Acuña Dominguez-->
+{% extends 'base/base.html' %}
+
+{% block content %}
+<div class="row">
+    <div class="col s12 m12 l12">
+        <table class="striped">
+	        <thead>
+		        <tr>
+			        <td>id de datos</td>
+			        <td>nombres</td>
+			        <td>apellido paterno</td>
+                    <td>apellido materno</td>
+			        <td>edad</td>
+                    <td>id de tipo</td>
+                    <td>id de usuarios</td>
+                </tr>
+            </thead>
+            <tbody>
+		        {% if object_list %}
+		        {% for datospersonales in object_list %}
+		        <tr>
+			        <td>{{ datospersonales.id_datos }}</td>
+			        <td>{{ datospersonales.nombre }}</td>
+			        <td>{{ datospersonales.a_paterno }}</td>
+			        <td>{{ datospersonales.a_materno }}</td>
+			        <td>{{ datospersonales.edad }}</td>
+			        <td>{{ datospersonales.id_tipo }}</td>
+                    <td>{{ datospersonales.id_usuarios }}</td>
+			        <td>
+				        <a class="btn btn-primary" href="{% url 'datospersonales:datospersonales_mostrar' datospersonales.id_datos %}">Ver</a>
+				        <a class="btn btn-primary" href="{% url 'datospersonales:datospersonales_editar' datospersonales.id_datos%}">Editar</a>
+				        <a class="btn btn-danger" href="{% url 'datospersonales:datospersonales_eliminar' datospersonales.id_datos %}">Eliminar</a>
+			        </td>
+		        </tr>
+		        {% endfor %}
+
+                {% else %}
+		            <h1>No hay registros</h1>
+		        {% endif %}
+            </tbody>
+        </table>
+    </div>
+</div>
+    <div class="row">
+        <div class="col s12 m12 l12">
+            <ul class="pagination">
+	            <li>
+		        {% if page_obj.has_previous %}
+       	            <a href="?page={{ page_obj.previous_page_number }}">Anterior</a>
+		        {% endif %}
+                </li>
+	            <li>
+		        {% if page_obj.has_next %}
+     	            <a href="?page={{ page_obj.next_page_number }}">Siguiente</a>
+    	        {% endif %}
+                </li>
+            </ul>
+        </div>
+    </div>
+
+{% endblock%}

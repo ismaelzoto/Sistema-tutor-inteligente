@@ -1,0 +1,33 @@
+
+{% extends 'base/base.html' %}
+
+{% block content %}
+
+    <div class="row">
+    <div class="col s12 m12 l12">
+        <table class="table-bordered">
+           <tr>
+               <td width="15%">
+                   <b>ID inteligencias:</b>
+               </td>
+               <td>
+                   {{ object.id_inteligencias}}
+               </td>
+           </tr>
+            <tr>
+               <td width="15%">
+                   <b>Tipo de inteligencia:</b>
+               </td>
+               <td>
+                   {{ object.tipo_de_inteligencia }}
+               </td>
+           </tr>
+        </table>
+        <a class="btn-floating gradient-45deg-amber-amber tooltipped" data-position="top" data-tooltip="Ok" href="{% url 'inteligencias:inteligencia_buscar' %}"><i class="material-icons">check</i></a>
+        <a class="btn-floating gradient-45deg-indigo-light-blue tooltipped" data-position="top" data-tooltip="Editar" href="{% url 'inteligencias:inteligencia_editar' object.id_inteligencias %}"><i class="material-icons">create</i></a>
+        <a class="btn-floating red darken-4 tooltipped" data-position="top" data-tooltip="Borrar" href="{% url 'inteligencias:inteligencia_eliminar' object.id_inteligencias %}"><i class="material-icons">delete</i></a>
+    </div>
+</div>
+
+
+{% endblock %}

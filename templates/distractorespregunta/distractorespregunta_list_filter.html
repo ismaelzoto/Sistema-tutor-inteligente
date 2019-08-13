@@ -1,0 +1,72 @@
+
+{% extends 'base/base.html' %}
+ {% block content %}
+<div class="row">
+    <div class="col s12 m12 l12">
+        <h4>Buscar</h4>
+        <form method="get">
+            <div class="col s10 m10 l10">
+                {{ filter.form.distractor }}
+            </div>
+            <div class="col s2 m2 l2">
+                <button class="btn btn-success btn-large" name="Search" class="header-search-input z-depth-2" type="submit"><i class="large material-icons">search</i></button>
+            </div>
+        </form>
+        <table class="striped">
+	        <thead>
+		        <tr>
+			        <th width="5%">ID</th>
+			        <th width="45%">Distractor</th>
+                    <th width="35%">Ejercicio</th>
+                    <th width="5%">Mostrar</th>
+                    <th width="5%">Editar</th>
+                    <th width="5%">Borrar</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% if filter.qs %}
+                {% for distractores_pregunta in filter.qs %}
+		        <tr>
+			        <td>{{ distractores_pregunta.id_distractor }}</td>
+                    <td>{{ distractores_pregunta.distractor }}</td>
+                    <td>{{ distractores_pregunta.id_ejercicio }}</td>
+			        <td>
+				        <a class="btn-floating gradient-45deg-amber-amber" href="{% url 'distractorespregunta:distractorespreguntamostrar' distractores_pregunta.id_distractor %}"><i class="material-icons">zoom_in</i></a>
+                    </td>
+                    <td>
+                        <a class="btn-floating gradient-45deg-indigo-light-blue" href="{% url 'distractorespregunta:distractorespreguntaeditar' distractores_pregunta.id_distractor %}"><i class="material-icons">create</i></a>
+                    </td>
+                    <td>
+                        <a class="btn-floating red darken-4" href="{% url 'distractorespregunta:distractorespreguntaeliminar' distractores_pregunta.id_distractor %}"><i class="material-icons">delete</i></a>
+			        </td>
+		        </tr>
+		        {% endfor %}
+                 {% else %}
+		            <h1>No hay registros de ejercicios</h1>
+		        {% endif %}
+            </tbody>
+        </table>
+    </div>
+</div>
+    <div class="row">
+        <div class="col s12 m12 l12">
+            <ul class="pagination center">
+	            <li>
+		        {% if page_obj.has_previous %}
+       	            <a class="btn blue" href="?page={{ page_obj.previous_page_number }}"><i class="material-icons">navigate_before</i></a>
+		        {% endif %}
+                </li>
+	            <li>
+		        {% if page_obj.has_next %}
+     	            <a class="btn red" href="?page={{ page_obj.next_page_number }}"><i class="material-icons">navigate_next</i></a>
+    	        {% endif %}
+                </li>
+            </ul>
+        </div>
+    </div>
+     <div class="fixed-action-btn">
+        <a class="btn-floating btn-large red tooltipped" data-position="top" data-tooltip="Agregar" href="{% url 'distractorespregunta:distractorespreguntacrear' %}">
+            <i class="large material-icons">add</i>
+        </a>
+    </div>
+ {% endblock%}

@@ -1,0 +1,14 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+    <div class="row">
+        <div class="col s12 m12 l12">
+            <form method="post">
+                {% csrf_token %}
+                <h3>¿Desea eliminar el ejercicio <b>{{ object.nombre_ejercicio }}</b> del tema <b>{{ object.temas_curso }}</b>?</h3>
+                <button class="btn btn-danger" type="submit">Sí, eliminar</button>
+                <a class= "btn btn-default" href="{% url 'ejercicios:ejerciciosbuscar' %}">Cancelar</a>
+            </form>
+        </div>
+    </div>
+{% endblock %}
