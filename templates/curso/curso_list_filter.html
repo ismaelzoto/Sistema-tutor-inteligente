@@ -1,18 +1,32 @@
-<!--Realizado por Karina Perez Perez -->
 {% extends 'base/base.html' %}
 
 {% block content %}
-<div class="row">
-    <div class="col s12 m12 l12">
+    <div class="row" xmlns="http://www.w3.org/1999/html">
+       <div align="center" class="col s12 m12 l12"> <h4>CURSOS DISPONIBLES</h4>
+       <!-- <a class="btn-floating btn-large red tooltipped" data-position="top" data-tooltip="Agregar" href="{% url 'cursos:cursocrear' %}">
+            <i class="large material-icons">add</i> -->
+       </div>
+    </div>
+
         <h4>Buscar</h4>
         <form method="get">
-            <div class="col s10 m10 l10">
-                {{ filter.form.nombre_curso }}
+           <!-- <div class="col s10 m10 l10"> -->
+            <!-- <div class="col s10 m8 l8"> -->
+               <div class="col s10 m8 l8">
+            Nombre de curso: &nbsp {{ filter.form.nombre_curso }}
             </div>
-            <div class="col s2 m2 l2">
-                <button class="btn btn-success btn-large" name="Search" class="header-search-input z-depth-2" type="submit"><i class="large material-icons">search</i></button>
+             <div class="col s8 m4 l2">
+              <!--  <div class="col s10 m6 l6"> -->
+            <button class="btn btn-success btn-large" name="Search" class="header-search-input z-depth-2" type="submit"><i class="large material-icons">search</i></button>
             </div>
         </form>
+
+               <!-- <form method="post">
+                {% csrf_token %}
+                <h6>¿Eliminar Todos los registros {{ object.all }}?</h6>
+                <button class="btn btn-danger" type="submit">Sí, eliminar</button>
+               </form> -->
+    <!--
         <table class="striped">
 	        <thead>
 		        <tr>
@@ -49,7 +63,39 @@
             </tbody>
         </table>
     </div>
+</div> -->
+    	        {% if filter.qs %}
+		        {% for curso in filter.qs %}
+    <div class="col s12 m6">
+        <div class="card">
+            <div class="card blue lighten-5">
+                <div class="card-content black-text">
+                    <span class="card-title">{{ curso.nombre_curso }}</span>
+                    <p>Nivel: {{ curso.nivel }} </p>
+                    <div><a class="btn-floating gradient-45deg-deep-purple-blue tooltipped" data-position="top" data-tooltip="Seleccionar" href="{% url 'cursos:cursoagregar' curso.id_curso %}"><i class="material-icons">add</i> </a>
+                    </div>
+
+                </div>
+                    <div class="card-action">
+                    <a class="btn-floating gradient-45deg-green-teal tooltipped" data-position="top" data-tooltip="Ver" href="{% url 'cursos:cursomostrar' curso.id_curso %}"><i class="material-icons">zoom_in</i> </a>
+                    <a class="btn-floating gradient-45deg-indigo-light-blue tooltipped" data-position="top" data-tooltip="Editar" href="{% url 'cursos:cursoeditar' curso.id_curso %}"><i class="material-icons">create</i></a>
+                    <a class="btn-floating gradient-45deg-red-pink tooltipped" data-position="top" data-tooltip="Eliminar" href="{% url 'cursos:cursoeliminar' curso.id_curso %}"><i class="material-icons">delete</i></a>
+               </div>
+        </div>
+    </div>
+  </div>
+        {% endfor %}
+                {% else %}
+		            <br> <br> <br> <h2>No hay registros de Curso</h2>
+                {% endif %}
+      </div>
+  </div>
+
+    <!-- <div class="fixed-action-btn"> -->
+<div align="center" class="nav-wrapper container">
+    <a href="{% url 'cursos:cursocrear' %}"><i class="material-icons" style="font-size: 45px">library_add</i><h6>Agregar Curso</h6></a>
 </div>
+
     <div class="row">
         <div class="col s12 m12 l12">
             <ul class="pagination center">
@@ -67,9 +113,4 @@
         </div>
     </div>
 
-    <div class="fixed-action-btn">
-        <a class="btn-floating btn-large red tooltipped" data-position="top" data-tooltip="Agregar" href="{% url 'cursos:cursocrear' %}">
-            <i class="large material-icons">add</i>
-        </a>
-    </div>
  {% endblock%}

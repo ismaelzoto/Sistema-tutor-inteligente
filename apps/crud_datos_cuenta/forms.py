@@ -4,7 +4,7 @@ from apps.sistema.models import datos_cuenta
 class datoscuentaForm(forms.ModelForm):
     class Meta:
         model = datos_cuenta
-        fields =[
+        fields = [
             'id_usuario',
             'usuario',
             'password'
@@ -12,7 +12,7 @@ class datoscuentaForm(forms.ModelForm):
         labels = {
             'id_usuario': 'ID Usuario',
             'usuario': 'Nombre del usuario',
-            'password':'Password'
+            'password': 'Contraseña'
         }
         widgets = {
             'id_usuario': forms.TextInput(attrs={'class': 'form-control'}),

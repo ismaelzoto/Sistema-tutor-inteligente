@@ -9,4 +9,5 @@ urlpatterns = [
     url(r'^editar/(?P<pk>\d+)/$', datospersonalesUpdate.as_view(), name='datospersonales_editar'),
     url(r'^mostrar/(?P<pk>\d+)/$', datospersonalesShow.as_view(), name='datospersonales_mostrar'),
     url(r'^buscar/$', search, name='datospersonales_buscar'),
-    ]
+
+            ]

@@ -6,7 +6,7 @@
         <div class="col s12 m12 l12">
             <form method="post">
                 {% csrf_token %}
-                <h3>¿Desea eliminar a el usuario <b>{{ object.usuario }}</b>?</h3>
+                <h3>¿Desea eliminar el usuario <b>{{ object.usuario }}</b>?</h3>
                 <button class="btn btn-danger" type="submit">Sí, eliminar</button>
                 <a class= "btn btn-default" href="{% url 'datosusuario:datosusuario_buscar' %}">Cancelar</a>
             </form>

@@ -1,7 +1,10 @@
-
 {% extends 'base/base.html' %}
 
 {% block content %}
+    <div align="center" class="col s12 m12 l12"> <h3>TIPOS DE USUARIO</h3></div>
+     <div align="right" class="nav-wrapper container">
+         <a href="{% url 'tipousuario:tipocrear' %}"><i class="material-icons" style="font-size: 50px">library_add</i><h6>Agregar</h6></a>
+     </div>
     <div class="row">
         <form method="get">
 
@@ -56,10 +59,11 @@
             </table>
         </div>
     </div>
-
+<!--
     <div class="fixed-action-btn">
         <a class="btn-floating btn-large red tooltipped" data-position="top" data-tooltip="Agregar" href="{% url 'tipousuario:tipocrear' %}">
             <i class="large material-icons">add</i>
         </a>
     </div>
+-->
 {% endblock%}

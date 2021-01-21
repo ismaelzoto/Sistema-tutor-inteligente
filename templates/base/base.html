@@ -1,5 +1,4 @@
-
-{% load staticfiles %}
+{% load static %}
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -9,6 +8,11 @@
 
 	{% block extrastatic %}
 	{% endblock %}
+<!--==========================================================================================
+
+
+
+        ========================================================================================================-->
 
     <link rel="stylesheet" href="{% static 'css/tooltip.css' %}" type="text/css">
     <link rel="stylesheet" href="{% static 'css/horizontal-menu/materialize.css' %}" type="text/css">
@@ -16,13 +20,15 @@
     <link rel="stylesheet" href="{% static 'css/jquery.dataTables_themeroller.css' %}" type="text/css">
     <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css">
     <link rel="stylesheet" href="{% static 'css/sweetalert.css' %}" type="text/css">
+    <!--link rel="stylesheet" href="{% static 'css/materialize.min.css' %}" type="text/css"-->
 
     <script type="text/javascript" src="{% static 'js/sweetalert.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/alertas.js' %}"></script>
 	<title>{% block title %}Sistema Tutor OpenMind &copy;{% endblock %}</title>
+
 </head>
-<body>
+
 <!--Import jQuery before materialize.js-->
 <script type="text/javascript" src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/materialize.js' %}"></script>
@@ -39,50 +45,38 @@
         {% block navbar %}
             <div class="col s12">
                 <ul id="slide-out" class="side-nav">
+                    {% if user.is_authenticated %}
                     <li>
                         <div class="user-view">
                             <div class="background">
                                 <img src="{% static 'images/office.jpg' %}">
                             </div>
-                            <a href="#!user"><img class="circle" src="{% static 'images/user.png' %}"></a>
-                            <a href="#!name"><span class="white-text name">Leonel Gonz&aacute;lez Vidales</span></a>
-                            <a href="#!email"><span class="white-text email">leonelgv@gmail.com</span></a>
+                                <!--i class="material-icons left" style="font-size: 60px">account_circle</i-->
+                                <a href="#!user"><img class="circle" src="{% static 'images/user.png' %}" align="right"></a>
+                                <a href="#!name"><span class="white-text name">{{ user.username }}</span></a>
+                                <a href="#!email"><span class="white-text email">{{ user.email }}</span></a>
                         </div>
                     </li>
-                    <!--
+
                     <ul class="collapsible collapsible-accordion">
-                        <li class="bold"><a class="collapsible-header">Tipos de usuarios</a>
+                        <li class="bold"><a class="collapsible-header">Perfil</a>
+		       <div class="collapsible-body">
+                    	        <ul>
+                                    <li><a href="{% url 'email_change' %}">Actualizar correo</a></li>
+                                </ul>
+                            </div>
                             <div class="collapsible-body">
                                 <ul>
-                                    <li><a href="{% url 'tipousuario:tipobuscar' %}">Usuarios</a></li>
+                                    <li><a href="{% url 'password_change' %}">Actulizar contraseña</a></li>
                                 </ul>
                             </div>
                         </li>
-                        <li class="bold"><a class="collapsible-header">Inteligencias</a>
-                            <div class="collapsible-body">
-                                <ul>
-                                    <li><a href="{% url 'inteligencias:inteligencia_buscar' %}">Inteligencias</a></li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="bold"><a class="collapsible-header">Cursos</a>
-                            <div class="collapsible-body">
-                                <ul>
-                                    <li><a href="{% url 'cursos:cursobuscar' %}">Cursos</a></li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="bold"><a class="collapsible-header">Temas de los cursos</a>
-                            <div class="collapsible-body">
-                                <ul>
-                                    <li><a href="{% url 'temascursos:temas_curso_buscar' %}">Temas de los cursos</a></li>
-                                </ul>
-                            </div>
-                        </li>
+
+
                     </ul>
-                    -->
-                    <li><a href="{% url 'usuario:datospersonales_buscar' %}">Usuarios</a></li>
-                    <li><a href="{% url 'datosusuario:datosusuario_buscar' %}">Datos de usuario</a></li>
+
+                    <li><a href="{% url 'usuario:datospersonales_buscar' %}">Datos de usuario</a></li>
+                    <li><a href="{% url 'datosusuario:datosusuario_buscar' %}">Usuarios</a></li>
                     <li><a href="{% url 'tipousuario:tipobuscar' %}">Tipos de usuarios</a></li>
                     <li><a href="{% url 'inteligencias:inteligencia_buscar' %}">Inteligencias</a></li>
                     <li><a href="{% url 'preguntastest:preguntasbuscar' %}">Preguntas</a></li>
@@ -90,32 +84,61 @@
                     <li><a href="{% url 'temascursos:temas_curso_buscar' %}">Temas de los cursos</a></li>
                     <li><a href="{% url 'ejercicios:ejerciciosbuscar' %}">Ejercicios</a></li>
                     <li><a href="{% url 'distractorespregunta:distractorespreguntabuscar' %}">Distractores</a></li>
+                        {% else %} <!--#b2ff59-->
+
+                        <li><a href="{% url 'sign_in' %}">Iniciar sesión<i class="material-icons">account_box</i></a></li> <br>
+                        <li><a href="{% url 'sign_up' %}">Registrate<i class="material-icons">assignment</i></a></li> <br>
+
+                       {% endif %}
+
 
                     <li><div class="divider"></div></li>
+                {% if user.is_authenticated %}
+                      <!--li> <a href="{% url 'password_change' %}">Cambio de contraseña</a></li-->
+                    <li> <a style="background-color: #b4dbed" href="{% url 'sign_out' %}">Cerrar sesión</a></li>
+                    <li><a class="subheader">&copy; 2021 OpenMind</a></li>
+
+                {% else %}
                     <li><a href="/about">Acerca de</a></li>
-                    <li><a class="subheader">&copy; 2019 OpenMind</a></li>
+                    <li><a class="subheader">&copy; 2021 OpenMind</a></li>
+                {% endif %}
                 </ul>
+
                 <div class="nav-wrapper">
-                    <nav class="blue darken-4 page-header">
+                   <!-- <nav class="blue darken-4 page-header"> -->
+                    <nav class="gradient-45deg-deep-purple-blue page-header">
                         <div class="nav-wrapper container">
                             <a href="#" data-activates="slide-out" class="show-on-large button-collapse"><i class="material-icons">menu</i></a>
-                            <a href="/" class="brand-logo">OpenMind</a>
-                            <ul class="right hide-on-med-and-down">
-                                <li><a href="salir.py"><i class="material-icons">exit_to_app</i></a></li>
+                                {% if user.is_authenticated %}
+                            <!--a href="{% url 'bienvenida' %}" class="brand-logo">{{ user.username }}<i class="material-icons">account_box</i></a-->
+                            <a href="{% url 'bienvenida' %}" class="brand-logo">OpenMind</a>
+
+                                <ul class="right hide-on-med-and-down">
+                                    <!--li> {{ user.username }}<i class="material-icons left">account_box</i></li-->
+                                    <!--li> <a href="{% url 'cursos:cursobuscar' %}"><i class="material-icons right">school</i></a></li-->
+                                    <li> <a href="{% url 'preguntastest:preguntasbuscar' %}">Preguntas<i class="material-icons left">mode_comment</i></a></li>
+                                    <li> <a href="{% url 'cursos:cursobuscar' %}">Cursos<i class="material-icons left">school</i></a></li>
+                                    <li> <a href="{% url 'ejercicios:ejerciciosbuscar' %}">Ejercicios<i class="material-icons left">assignment</i></a></li>
+
+                                    <li><a href="{% url 'sign_out' %}"><i class="material-icons right">exit_to_app</i></a></li>
                                 <!-- Dropdown Trigger -->
                             </ul>
-                        </div>
+                            {% else %}
+                                    <ul class="left hide-on-med-and-down"><!--#b4dbed-- prurple --- #5e35b1---- #512da8 -->
+                                         <!--a href="{% url 'bienvenida' %}" class="brand-logo">OpenMind</a-->
+                                        <li><a href="{% url 'sign_in' %}">Iniciar sesión<i class="material-icons left">account_circle</i></a></li>
+                                        <li><a href="{% url 'sign_up' %}">Registrate<i class="material-icons left">assignment</i></a></li>
+                                    </ul>
+                            {% endif %}
+                          </div>
                     </nav>
                 </div>
             </div>
             </div>
 	{% endblock %}
-
-    <div class="row">
-        <div class="col l1 s1">
-
-        </div>
-        <div class="col l10 s10">
+  <div class="row">
+  <div class="container">
+        <!--div class="col s10"-->
 	    {% block content %}
             <h4>	Bloque de contenido		</h4>
         {% endblock %}
@@ -124,31 +147,30 @@
 
         {% endblock%}
         </div>
-        <div class="col l1 s1">
+      <!--div class="col s12"></div> </div>-->
 
-        </div>
-    </div>
+  </div>
 </div>
 <p></p>
-
-<footer class="page-footer">
+<!--= gradient-45deg-blue-grey-blue =-->
+<footer class="gradient-45deg-blue-grey-blue page-footer">
     <div class="container">
         <div class="row">
-            <div class="col l6 s12">
-                <h5 class="white-text">&copy; 2019 OpenMind</h5>
+            <div class="col l8 s12">
+                <a class="white-text" href="{% url 'bienvenida' %}" target="_blank">&copy; 2021 OpenMind</a>
             </div>
         </div>
     </div>
     <div class="footer-copyright">
-        <div class="container">
-            <div class="row">
-                <div class="col l6 s12">
-                    <a class="purple-text text-lighten-3" href="http://www.italtamirano.edu.mx/" target="_blank">Instituto Tecnológico de Cd. Altamirano</a>
+        <div class="row">
+                <div class="col l8 s12">
+                    <a class="white-text text-lighten-3" href="http://www.italtamirano.edu.mx/" target="_blank">Instituto Tecnológico de Cd. Altamirano</a>
                 </div>
             </div>
         </div>
-    </div>
+
 </footer>
+
 
 <!--  Scripts-->
 <!--Import jQuery before materialize.js-->
@@ -168,6 +190,11 @@
 <script type="text/javascript" src="{% static 'js/custom-script.js' %}"></script>
 
 <script type="text/javascript" src="{% static 'js/funcionesAjax.js' %}"></script>
+<!--=======================================================================================================
+
+
+
+==========================================================================================================================-->
 <script>
     $(document).ready(function() {
         $('.collapsible').collapsible();
@@ -192,7 +219,5 @@
 </script>
 	{% block extrajs %}
 	{% endblock %}
-
-
 </body>
 </html>

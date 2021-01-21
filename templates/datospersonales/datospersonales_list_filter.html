@@ -1,8 +1,13 @@
 {% extends 'base/base.html' %}
 
 {% block content %}
-<div class="row">
-    <div class="col s12 m12 l12">
+<div align="center" class="col s12 m12 l12"> <h3>LISTA DE USUARIOS</h3></div>
+    <div align="right" class="nav-wrapper container">
+         <a href="{% url 'usuario:datospersonales_crear' %}" data-animation="top"><i class="material-icons" style="font-size: 50px">library_add</i><h6>Agregar</h6></a>
+     </div>
+
+    <div class="row">
+      <div class="col s12 m12 l12">
         <h4>Buscar</h4>
         <form method="get">
             <div class="col s10 m10 l10">
@@ -10,8 +15,8 @@
                 {{ filter.form.nombre }} <br>
                 Apellido paterno:<br>
                 {{ filter.form.a_paterno }} <br>
-                Apellido materno:<br>
-                {{ filter.form.a_materno }}<br>
+               <!-- Apellido materno:<br>
+                {{ filter.form.a_materno }}<br> -->
             </div>
             <div class="col s2 m2 l2">
                 <button name="Search" class="header-search-input z-depth-2" type="submit"><i class="large material-icons">search</i></button>
@@ -47,13 +52,13 @@
 			        <td>{{ datospersonales.tipo_usuario }}</td>
                     <td>{{ datospersonales.datos_cuenta }}</td>
 			        <td>
-				         <a class="btn-floating gradient-45deg-amber-amber" href="{% url 'usuario:datospersonales_mostrar' datospersonales.id_datos %}">Ver</a>
+				         <a class="btn-floating gradient-45deg-amber-amber" href="{% url 'usuario:datospersonales_mostrar' datospersonales.id_datos %}"><i class="large material-icons">search</i></a>
                     </td>
                     <td>
-				        <a class="btn-floating gradient-45deg-indigo-light-blue" href="{% url 'usuario:datospersonales_editar' datospersonales.id_datos %}">Editar</a>
+				        <a class="btn-floating gradient-45deg-indigo-light-blue" href="{% url 'usuario:datospersonales_editar' datospersonales.id_datos %}"><i class="large material-icons">create</i></a>
                     </td>
                     <td>
-				        <a class="btn-floating red darken-4" href="{% url 'usuario:datospersonales_eliminar' datospersonales.id_datos %}">Eliminar</a>
+				        <a class="btn-floating red darken-4" href="{% url 'usuario:datospersonales_eliminar' datospersonales.id_datos %}"><i class="large material-icons">delete</i></a>
 			        </td>
 		        </tr>
 		        {% endfor %}
@@ -68,9 +73,13 @@
     </div>
 </div>
 
+   <!--  <div align="right" class="nav-wrapper container">
+         <a href="{% url 'usuario:datospersonales_crear' %}" data-animation="top"><i class="material-icons" style="font-size: 50px">library_add</i><h6>Agregar</h6></a>
+     </div>
+
     <div class="fixed-action-btn">
         <a class="btn-floating btn-large red tooltipped" data-position="top" data-tooltip="Agregar" href="{% url 'usuario:datospersonales_crear' %}">
             <i class="large material-icons">add</i>
         </a>
-    </div>
+    </div> -->
 {% endblock %}

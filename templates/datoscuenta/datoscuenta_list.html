@@ -1,4 +1,4 @@
-<!--Realizado por Jaime Acuña Dominguez-->
+
 {% extends 'base/base.html' %}
 
 {% block content %}
@@ -7,26 +7,19 @@
         <table class="striped">
 	        <thead>
 		        <tr>
-			        <td>id de datos</td>
-			        <td>nombres</td>
-			        <td>apellido paterno</td>
-                    <td>apellido materno</td>
-			        <td>edad</td>
-                    <td>id de tipo</td>
-                    <td>id de usuarios</td>
+			        <th width="5%">Id de usuario</th>
+			        <th width="80%">Usuario</th>
+                    <th width="5%">Mostrar</th>
+                    <th width="5%">Editar</th>
+                    <th width="5%">Borrar</th>
                 </tr>
             </thead>
             <tbody>
-		        {% if object_list %}
-		        {% for datospersonales in object_list %}
+		        {% if filter.qs %}
+		        {% for datoscuenta in filter.qs %}
 		        <tr>
-			        <td>{{ datospersonales.id_datos }}</td>
-			        <td>{{ datospersonales.nombre }}</td>
-			        <td>{{ datospersonales.a_paterno }}</td>
-			        <td>{{ datospersonales.a_materno }}</td>
-			        <td>{{ datospersonales.edad }}</td>
-			        <td>{{ datospersonales.id_tipo }}</td>
-                    <td>{{ datospersonales.id_usuarios }}</td>
+			        <td>{{ datoscuenta.id_usuario }}</td>
+			        <td>{{ datoscuenta.usuario }}</td>
 			        <td>
 				        <a class="btn btn-primary" href="{% url 'datospersonales:datospersonales_mostrar' datospersonales.id_datos %}">Ver</a>
 				        <a class="btn btn-primary" href="{% url 'datospersonales:datospersonales_editar' datospersonales.id_datos%}">Editar</a>

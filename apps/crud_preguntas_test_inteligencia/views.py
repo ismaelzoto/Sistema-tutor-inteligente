@@ -12,9 +12,9 @@ class preguntas_test_inteligenciaCreate(CreateView):
     success_url = reverse_lazy('preguntastest:preguntasbuscar')
 
 class preguntas_test_inteligenciaList(ListView):
-    queryset = preguntas_test_inteligencia.objects.order_by('id_ejercicio')
+    queryset = preguntas_test_inteligencia.objects.order_by('id_pregunta_test')
     template_name = 'preguntas/preguntas_list.html'
-    paginate_by = 100
+    paginate_by = 25
 
 class preguntas_test_inteligenciaUpdate(UpdateView):
     model = preguntas_test_inteligencia

@@ -1,0 +1,41 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+<div class="row">
+    <div class="col s12 m12 l12">
+        <table class="table-bordered">
+           <tr>
+               <td width="15%">
+                   <b>Id:</b>
+               </td>
+               <td>
+                   {{ object.id_cuestionario }}
+               </td>
+           </tr>
+            <tr>
+               <td width="15%">
+                   <b>Nombre del curso:</b>
+               </td>
+               <td>
+                   {{ object.id_pregunta_test }}
+               </td>
+           </tr>
+            <tr>
+               <td width="15%">
+                   <b>Nivel:</b>
+               </td>
+               <td>
+                   {{ object.resultado_pregunta_cuestionario }}
+               </td>
+           </tr>
+        </table>
+        <p></p>
+
+        <a class="btn-floating gradient-45deg-amber-amber tooltipped" data-position="top" data-tooltip="Ok" href="{% url 'cuestionario:cuestionariobuscar' %}"><i class="material-icons">check</i></a>
+        <a class="btn-floating gradient-45deg-indigo-light-blue tooltipped" data-position="top" data-tooltip="Editar" href="{% url 'cuestionario:cuestionarioeditar' object.id_cuestionario%}"><i class="material-icons">create</i></a>
+        <a class="btn-floating red darken-4 tooltipped" data-position="top" data-tooltip="Borrar" href="{% url 'cuestionario:cuestionarioeliminar' object.id_cuestionario %}"><i class="material-icons">delete</i></a>
+    </div>
+</div>
+
+
+{% endblock %}

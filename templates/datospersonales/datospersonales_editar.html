@@ -1,0 +1,16 @@
+
+{% extends 'base/base.html' %}
+
+{% block content %}
+    <div class="row">
+        <div class="col s12 m12 l12">
+            <h4>Editar Usuario - {{ object.datos_cuenta }}</h4>
+            <form method="post">
+	            {% csrf_token %}
+	            {{ form.as_p }}
+	            <button class="btn purple" type="submit">Guardar<i class="material-icons right">send</i></button>
+	            <a class= "btn red" href="{% url 'usuario:datospersonales_buscar' %}">Cancelar<i class="material-icons right">cancel</i></a>
+            </form>
+        </div>
+    </div>
+{% endblock %}

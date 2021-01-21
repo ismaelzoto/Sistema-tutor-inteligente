@@ -1,6 +1,10 @@
 {% extends 'base/base.html' %}
 
 {% block content %}
+    <div align="center" class="col s12 m12 l12"> <h3>USUARIOS</h3></div>
+    <div align="right" class="nav-wrapper container">
+         <a href="{% url 'datosusuario:datosusuario_crear' %}" data-animation="top"><i class="material-icons" style="font-size: 50px">library_add</i><h6>Registrar</h6></a>
+     </div>
 <div class="row">
     <div class="col s12 m12 l12">
         <h4>Buscar</h4>
@@ -31,14 +35,14 @@
 		        <tr>
 			        <td>{{ datoscuenta.id_usuario }}</td>
 			        <td>{{ datoscuenta.usuario }}</td>
-			        <td>
-				         <a class="btn-floating gradient-45deg-amber-amber" href="{% url 'datosusuario:datosusuario_mostrar' datoscuenta.id_usuario %}">Ver</a>
+                    <td>
+				         <a class="btn-floating gradient-45deg-amber-amber" href="{% url 'datosusuario:datosusuario_mostrar' datoscuenta.id_usuario %}"><i class="large material-icons">zoom_in</i></a>
                     </td>
                     <td>
-				        <a class="btn-floating gradient-45deg-indigo-light-blue" href="{% url 'datosusuario:datosusuario_editar' datoscuenta.id_usuario %}">Editar</a>
+				        <a class="btn-floating gradient-45deg-indigo-light-blue" href="{% url 'datosusuario:datosusuario_editar' datoscuenta.id_usuario %}"><i class="large material-icons">create</i></a>
                     </td>
                     <td>
-				        <a class="btn-floating red darken-4" href="{% url 'datosusuario:datosusuario_eliminar' datoscuenta.id_usuario %}">Eliminar</a>
+				        <a class="btn-floating red darken-4" href="{% url 'datosusuario:datosusuario_eliminar' datoscuenta.id_usuario %}"><i class="large material-icons">delete</i></a>
 			        </td>
 		        </tr>
 		        {% endfor %}
@@ -53,9 +57,31 @@
     </div>
 </div>
 
-    <div class="fixed-action-btn">
+    <!-- <h2>Área para miembros</h2>
+<p>
+
+    Bienvenido <b>{{request.user.username}}</b>,
+                  {% if filter.qs %}
+		        {% for datoscuenta in filter.qs %}
+    Bienvenido <b>{{datoscuenta.usuario}}</b>,
+    esta página es exclusiva para usuarios registrados.
+</p>
+
+                {% endfor %}
+
+                {% else %}
+		            <tr>
+                        <td colspan="10"><h1>No Existen Registros Personales</h1></td>
+                    </tr>
+		        {% endif %}  -->
+
+<hr />
+<!-- <a href="/logout">Cerrar sesión</a>
+    </div>
+   <div class="fixed-action-btn">
         <a class="btn-floating btn-large red tooltipped" data-position="top" data-tooltip="Agregar" href="{% url 'datosusuario:datosusuario_crear' %}">
             <i class="large material-icons">add</i>
         </a>
-    </div>
+    </div> -->
+</div>
 {% endblock %}

@@ -10,14 +10,14 @@ class cursoForm(forms.ModelForm):
             'nivel'
         ]
         labels = {
-            'idcurso': 'ID del curso',
-            'nombre_curso' : 'Nombre del curso',
-            'nivel' : 'Nombre del nivel'
+            'idcurso': 'Id Curso',
+            'nombre_curso' : 'Nombre de curso',
+            'nivel' : 'Nivel'
         }
 
-        widgest = {
-            'id_curso': forms.TextInput (attrs={'class':'form-control'}),
-            'nombre_curso' : forms.TextInput(attrs={'class':'form-control'}),
+        widgets = {
+            'id_curso': forms.TextInput(attrs={'class':'form-control'}),
+            'nombre_curso': forms.TextInput(attrs={'class':'form-control'}),
             'nivel': forms.TextInput(attrs={'class':'form-control'})
         }
 

@@ -1,15 +1,20 @@
-<!--Realizado por Jaime Acuña Dominguez-->
+
 {% extends 'base/base.html' %}
 
 {% block content %}
     <div class="row">
-        <div class="col s12 m12 l12">
+    <h4>Registrar usuario</h4>
+        <div class="col s10 m6 l3">
             <form method="post">
 	            {% csrf_token %}
 	            {{ form.as_p }}
-	            <button class="btn purple" type="submit">Guardar<i class="material-icons right">send</i></button>
-	            <a class= "btn red" href="{% url 'usuario:datospersonales_buscar' %}">Cancelar<i class="material-icons right">cancel</i></a>
+	            <button class="btn purple" type="submit">Registrar<i class="material-icons right">send</i></button> <br>
+	            <br> <a class= "btn red" href="{% url 'datosusuario:datosusuario_buscar' %}">Cancelar<i class="material-icons right">cancel</i></a>
             </form>
         </div>
     </div>
+<hr />
+
+     <!-- <div align="center" class="gradient-45deg-deep-purple-purple"> <a href="{% url 'sign_in' %}">Iniciar sesión</a></div> -->
+
 {% endblock %}

@@ -1,10 +1,9 @@
 from django.db import models
 
 # Create your models here.
-#elaborado por: Cesar Pérez Dueñas
 
 class curso(models.Model):
-    id_curso = models.IntegerField(primary_key=True)
+    id_curso = models.AutoField(primary_key=True)
     nombre_curso = models.CharField(max_length=95)
     nivel = models.CharField(max_length=45)
 
@@ -23,7 +22,7 @@ class ejercicios(models.Model):
     id_ejercicio = models.IntegerField(primary_key=True)
     nombre_ejercicio = models.CharField(max_length=85)
     puntaje = models.IntegerField()
-    temas_curso= models.ForeignKey(temas_curso, null=True, blank=True, on_delete=models.CASCADE)
+    temas_curso = models.ForeignKey(temas_curso, null=True, blank=True, on_delete=models.CASCADE)
 
     def __str__(self):
         return '{}'.format(self.nombre_ejercicio)
@@ -53,7 +52,7 @@ class preguntas_test_inteligencia(models.Model):
         return '{}'.format(self.pregunta)
 
 class datos_cuenta(models.Model):
-    id_usuario = models.IntegerField(primary_key=True)
+    id_usuario = models.AutoField(primary_key=True)
     usuario = models.CharField(max_length=85)
     password = models.CharField(max_length=85)
 
@@ -111,3 +110,8 @@ class resultados(models.Model):
     resultados_incorrectas = models.IntegerField()
     ejercicios = models.ForeignKey(ejercicios, null=True, blank=True, on_delete=models.CASCADE)
     datos_cuenta = models.ForeignKey(datos_cuenta, null=True, blank=True, on_delete=models.CASCADE)
+
+class cuestionario(models.Model):
+    id_cuestionario = models.IntegerField(primary_key=True)
+    id_pregunta_test = models.ForeignKey(preguntas_test_inteligencia, null=True, blank=True, on_delete=models.CASCADE)
+    resultado_pregunta_cuestionario = models.IntegerField()

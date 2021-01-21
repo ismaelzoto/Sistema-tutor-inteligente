@@ -20,7 +20,7 @@ class datospersonalesList(ListView):
 class datospersonalesUpdate(UpdateView):
     model = datos_personales
     form_class = datospersonalesForm
-    template_name = 'datospersonales/datospersonales_form.html'
+    template_name = 'datospersonales/datospersonales_editar.html'
     success_url = reverse_lazy('usuario:datospersonales_buscar')
 
 

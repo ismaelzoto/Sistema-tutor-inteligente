@@ -1,11 +1,16 @@
 from django.shortcuts import render
-from django.views.generic import CreateView, ListView, DeleteView, DetailView, UpdateView
+from django.views.generic import CreateView, ListView, DeleteView, DetailView, UpdateView, TemplateView
 from apps.sistema.models import curso
 from apps.crud_curso.forms import cursoForm
 from apps.crud_curso.filters import cursoFilter
 from django.urls import reverse_lazy
-
 # Create your views here.
+
+
+class agregarcurso(DetailView):
+    model = curso
+    template_name = 'curso/curso_add.html'
+
 
 class cursoCreate(CreateView):
     model = curso
@@ -15,14 +20,16 @@ class cursoCreate(CreateView):
 
 
 class cursoList(ListView):
-    queryset = curso.objects.order_by('id_curso')
+    queryset = curso.objects.order_by('nombre_curso')
     template_name = 'curso/curso_list.html'
+    form_class = cursoForm
+    paginate_by = 2
 
 
 class cursoUpdate(UpdateView):
     model = curso
     form_class = cursoForm
-    template_name = 'curso/curso_form.html'
+    template_name = 'curso/curso_editar.html'
     success_url = reverse_lazy('cursos:cursobuscar')
 
 
