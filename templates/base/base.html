@@ -60,9 +60,15 @@
 
                     <ul class="collapsible collapsible-accordion">
                         <li class="bold"><a class="collapsible-header">Perfil</a>
+                            <div class="collapsible-body">
+                            <ul>
+                                <li><a href="{% url 'preguntastest:preguntasbuscar' %}">Preguntas</a></li>
+                            </ul>
+                            </div>
 		       <div class="collapsible-body">
                     	        <ul>
-                                    <li><a href="{% url 'email_change' %}">Actualizar correo</a></li>
+                                    <li><a href="{% url 'cursos:cursobuscar' %}">Cursos</a></li>
+                                    <!--li><a href="{% url 'email_change' %}">Actualizar correo</a></li-->
                                 </ul>
                             </div>
                             <div class="collapsible-body">
@@ -71,16 +77,29 @@
                                 </ul>
                             </div>
                         </li>
+                  <li class="bold"><a class="collapsible-header">Roles</a>
+                      <div class="collapsible-body">
+                          <ul>
+                    <li><a href="{% url 'datosusuario:datosusuario_buscar' %}">Usuarios</a></li>
+
+                          </ul>
+                      </div>
+                      <div class="collapsible-body">
+                          <ul>
+                      <li><a href="{% url 'tipousuario:tipobuscar' %}">Tipos de usuarios</a></li>
+
+                          </ul>
+                      </div>
 
 
                     </ul>
 
                     <li><a href="{% url 'usuario:datospersonales_buscar' %}">Datos de usuario</a></li>
-                    <li><a href="{% url 'datosusuario:datosusuario_buscar' %}">Usuarios</a></li>
-                    <li><a href="{% url 'tipousuario:tipobuscar' %}">Tipos de usuarios</a></li>
+                    <!--li><a href="{% url 'datosusuario:datosusuario_buscar' %}">Usuarios</a></li-->
+                    <!--li><a href="{% url 'tipousuario:tipobuscar' %}">Tipos de usuarios</a></--li-->
                     <li><a href="{% url 'inteligencias:inteligencia_buscar' %}">Inteligencias</a></li>
-                    <li><a href="{% url 'preguntastest:preguntasbuscar' %}">Preguntas</a></li>
-                    <li><a href="{% url 'cursos:cursobuscar' %}">Cursos</a></li>
+                    <!--li><a href="{% url 'preguntastest:preguntasbuscar' %}">Preguntas</a></li-->
+                    <!--li><a href="{% url 'cursos:cursobuscar' %}">Cursos</a></li-->
                     <li><a href="{% url 'temascursos:temas_curso_buscar' %}">Temas de los cursos</a></li>
                     <li><a href="{% url 'ejercicios:ejerciciosbuscar' %}">Ejercicios</a></li>
                     <li><a href="{% url 'distractorespregunta:distractorespreguntabuscar' %}">Distractores</a></li>
@@ -142,18 +161,17 @@
 	    {% block content %}
             <h4>	Bloque de contenido		</h4>
         {% endblock %}
-
-        {% block footer %}
-
-        {% endblock%}
-        </div>
+</div>
       <!--div class="col s12"></div> </div>-->
 
   </div>
 </div>
 <p></p>
+
+{% if user.is_authenticated %}
+        {% block footer %}
 <!--= gradient-45deg-blue-grey-blue =-->
-<footer class="gradient-45deg-blue-grey-blue page-footer">
+<footer class="gradient-45deg-deep-purple-blue page-footer">
     <div class="container">
         <div class="row">
             <div class="col l8 s12">
@@ -170,7 +188,9 @@
         </div>
 
 </footer>
-
+        {% endblock%}
+{% else %}
+{% endif %}
 
 <!--  Scripts-->
 <!--Import jQuery before materialize.js-->

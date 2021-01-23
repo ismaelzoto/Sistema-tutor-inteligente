@@ -18,7 +18,7 @@ from django.urls import path
 from django.contrib.auth import views as auth_views
 from django.urls import reverse_lazy
 from django.conf.urls import include, url
-from perfiles.views import SignUpView, BienvenidaView, SignInView, SignOutView, RegistroNuevo, TemplateView
+from perfiles.views import SignUpView, BienvenidaView, SignInView, SignOutView, RegistroNuevo, ActualizarView, HechoView, TemplateView
 from django.contrib.auth.decorators import login_required
 
 urlpatterns = [
@@ -73,6 +73,13 @@ urlpatterns = [
         name='password_change_done'),
 
     url(r'^email_change/$', login_required(TemplateView.as_view(template_name='registros/email_change_form.html')),
-        name='email_change')
+        name='email_change'),
+
+    url(r'^editar_correo/$', ActualizarView.as_view(),
+        name='cambiar_correo'),
+
+    url(r'^editar_correo_done/$', HechoView.as_view(),
+        name='cambiar_correo_hecho')
+
 
     ]

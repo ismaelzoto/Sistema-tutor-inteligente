@@ -1,4 +1,5 @@
 from django.conf.urls import url
+
 from apps.crud_curso.views import cursoCreate, cursoList, cursoDelete, cursoUpdate, cursoShow, searchcurso, agregarcurso
 
 urlpatterns = [

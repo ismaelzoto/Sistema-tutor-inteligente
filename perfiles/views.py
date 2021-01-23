@@ -3,7 +3,7 @@ from django.shortcuts import render
 import requests, json
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate
-from django.views.generic import CreateView, TemplateView
+from django.views.generic import CreateView, UpdateView, TemplateView
 from .models import Perfil
 from .forms import SignUpForm, User, EmailChangeForm, forms
 from django.contrib import messages
@@ -14,6 +14,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect, render_to_response
 from django.template import RequestContext
+from django.urls import reverse_lazy
 
 
 @login_required()
@@ -76,6 +77,16 @@ class SignInView(LoginView):
     template_name = 'perfiles/iniciar_sesion.html'
 
 
+class ActualizarView(UpdateView):
+    form_class = EmailChangeForm
+    template_name = 'registros/email_change_form.html'
+    success_url = reverse_lazy('cambiar_correo_hecho')
+
+
+class HechoView(TemplateView):
+    template_name = 'registros/email_change_done.html'
+
+
 class SignUpView(CreateView):
     model = Perfil
     form_class = SignUpForm
@@ -89,8 +100,8 @@ class SignUpView(CreateView):
         form.save()
         usuario = form.cleaned_data.get('username')
         password = form.cleaned_data.get('password1')
-#        usuario = authenticate(username=usuario, password=password)
-#        login(self.request, usuario)
+#       usuario = authenticate(username=usuario, password=password)
+#       login(self.request, usuario)
         return redirect('/nuevo-registro/')
 
 

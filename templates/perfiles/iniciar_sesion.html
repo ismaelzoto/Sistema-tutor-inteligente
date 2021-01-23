@@ -13,7 +13,7 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
 
-<!--===#7abecc====#74cfbf=====-->
+<!--===#7abecc====#74cfbf====rgba(101,186,75,0.5) ;====best=#7abaff, #74b5fc=====-->
 	<style>
 		body,
 		html {
@@ -26,7 +26,7 @@
 			width: 350px;
 			margin-top: auto;
 			margin-bottom: auto;
-			background: rgba(101,186,75,0.5) ;
+			background: #74b5fc;
 			position: relative;
 			display: flex;
 			justify-content: center;
@@ -44,13 +44,13 @@
 		}
 
 		#form-title{
-			color: #fff;
+			color: #171a1d;
 
 		}
 
 		.login_btn {
 			width: 100%;
-			background: #33ccff !important;
+			background: #00AF91; !important;
 			color: white !important;
 		}
 		.login_btn:focus {
@@ -61,10 +61,11 @@
 			padding: 0 2rem;
 		}
 		.input-group-text {
-			background: #f7ba5b !important;
-			color: white !important;
+            /*background: #f7ba5b !important;*/
+			background: #74b5fc; !important;
+            color: black !important;
 			border: 0 !important;
-			border-radius: 0.25rem 0 0 0.25rem !important;
+			border-radius: 0.50rem 0.50rem 0.50rem 0.50rem !important;
 		}
 		.input_user,
 		.input_pass:focus {
@@ -96,29 +97,27 @@
 	<div class="container h-100">
 		<div class="d-flex justify-content-center h-100">
 			<div class="user_card">
-            <h1 align="center">Bienvenido </h1>
-
 				<div class="d-flex justify-content-center">
 
-					<h5 id="form-title">INICIAR SESIÓN</h5>
+					<h2 id="form-title">Iniciar sesión </h2>
 				</div>
 				<div class="d-flex justify-content-center form_container">
 					<form method="POST" action="">
 						{% csrf_token %}
-						<div class="input-group mb-3">
+                        <div class="input-group mb-3">
 							<div class="input-group-append">
-								<span class="input-group-text"><i class="fas fa-user-circle"></i></span>
+								<span class="input-group-text"><i class="fas fa-user-circle" style = "font-size: 25px";></i></span>
 							</div>
 
-							<input type="text" name="username" placeholder="Usuario..." class="form-control" required="">
+                            <input type="text" name="username" placeholder="Usuario..." class="form-control" required="">
 						</div>
 
 						<div class="input-group mb-2">
 							<div class="input-group-append">
-								<span class="input-group-text"><i class="fas fa-key"></i></span>
+								<span class="input-group-text"><i class="fas fa-key" style = "font-size: 22px";></i></span>
 							</div>
 
-								<input type="password" name="password" placeholder="Contraseña..." class="form-control" required="">
+                            <input type="password" name="password" placeholder="Contraseña..." class="form-control" required="">
 						</div>
 
 							<div class="d-flex justify-content-center mt-3 login_container">

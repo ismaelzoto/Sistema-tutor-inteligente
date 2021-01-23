@@ -12,7 +12,7 @@
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
-<!--== #7abecc ==-->
+<!--== #7abecc===#A6E3E9 ==-->
 	<style>
 		body,
 		html {
@@ -25,7 +25,7 @@
 			width: 350px;
 			margin-top: auto;
 			margin-bottom: auto;
-			background: #74cfbf;
+			background: #74b5fc;
 			position: relative;
 			display: flex;
 			justify-content: center;
@@ -47,7 +47,7 @@
 		}
 		.login_btn {
 			width: 100%;
-			background: #33ccff !important;
+			background: #00AF91; !important;
 			color: white !important;
 		}
 		.login_btn:focus {
@@ -58,10 +58,11 @@
 			padding: 0 2rem;
 		}
 		.input-group-text {
-			background: #f7ba5b !important;
-			color: white !important;
+			background: #74b5fc; !important;
+			color: #171a1d !important;
 			border: 0 !important;
-			border-radius: 0.25rem 0 0 0.25rem !important;
+			border-radius: 0 0 0 0 !important;
+
 		}
 		.input_user,
 		.input_pass:focus {
@@ -77,7 +78,7 @@
 		<div class="d-flex justify-content-center h-100">
 			<div class="user_card">
 				<div class="d-flex justify-content-center">
-					<h3 id="form-title">REGISTRAR CUENTA</h3>
+					<h2 id="form-title" class="black-text">Registrar cuenta</h2>
 				</div>
 				<div class="d-flex justify-content-center form_container">
 
@@ -85,31 +86,31 @@
 						{% csrf_token %}
 						<div class="input-group mb-3">
 							<div class="input-group-append">
-								<span class="input-group-text"><i class="fas fa-user-circle"></i></span>
+								<span class="input-group-text"><i class="fas fa-user-circle" style = "font-size: 25px";></i></span>
 							</div>
                             {{form.username}}
 						</div>
                         <div class="input-group mb-2">
 							<div class="input-group-append">
-								<span class="input-group-text"><i class="fas fa-user"></i></span>
+								<span class="input-group-text"><i class="fas fa-user" style = "font-size: 21px";></i></span>
 							</div>
                             {{form.first_name}}
 						</div>
 						<div class="input-group mb-2">
 							<div class="input-group-append">
-								<span class="input-group-text"><i class="fas fa-envelope-square"></i></span>
+								<span class="input-group-text"><i class="fas fa-envelope-square" style = "font-size: 22px";></i></span>
 							</div>
                             {{form.email}}
 						</div>
 						<div class="input-group mb-2">
 							<div class="input-group-append">
-								<span class="input-group-text"><i class="fas fa-key"></i></span>
+								<span class="input-group-text"><i class="fas fa-key" style = "font-size: 20px";></i></span>
 							</div>
                             {{form.password1}}
 						</div>
 						<div class="input-group mb-2">
 							<div class="input-group-append">
-								<span class="input-group-text"><i class="fas fa-key"></i></span>
+								<span class="input-group-text"><i class="fas fa-key" style = "font-size: 20px";></i></span>
 							</div>
                             {{form.password2}}
 						</div>
@@ -154,5 +155,5 @@
 </body>
 </html>
     {% endif %}
-
+    <br> <br> <br>
 {% endblock content %}
