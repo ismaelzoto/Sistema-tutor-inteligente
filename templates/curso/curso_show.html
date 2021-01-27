@@ -1,41 +1,22 @@
 {% extends 'base/base.html' %}
 
 {% block content %}
+
 <div class="row">
-    <div class="col s12 m12 l12">
-        <table class="table-bordered">
-           <tr>
-               <td width="15%">
-                   <b>Id:</b>
-               </td>
-               <td>
-                   {{ object.id_curso }}
-               </td>
-           </tr>
-            <tr>
-               <td width="15%">
-                   <b>Nombre del curso:</b>
-               </td>
-               <td>
-                   {{ object.nombre_curso }}
-               </td>
-           </tr>
-            <tr>
-               <td width="15%">
-                   <b>Nivel:</b>
-               </td>
-               <td>
-                   {{ object.nivel }}
-               </td>
-           </tr>
-        </table>
-        <p></p>
+        <!--div class="col s12 m6"-->
+      <div class="col-md-4 offset-md-4">
+            <div class="card gradient-45deg-blue-indigo">
+                <div class="card-content white-text">
+                    <span class="card-title"><b>{{ curso.nombre_curso }}</b></span>
+                    <p>Nivel: {{ curso.nivel }} </p>
 
-        <a class="btn-floating gradient-45deg-amber-amber tooltipped" data-position="top" data-tooltip="OK" href="{% url 'cursos:cursobuscar' %}"><i class="material-icons">check</i></a>
-        <a class="btn-floating gradient-45deg-indigo-light-blue tooltipped" data-position="top" data-tooltip="Editar" href="{% url 'cursos:cursoeditar' object.id_curso%}"><i class="material-icons">create</i></a>
-        <a class="btn-floating red darken-4 tooltipped" data-position="top" data-tooltip="Borrar" href="{% url 'cursos:cursoeliminar' object.id_curso %}"><i class="material-icons">delete</i></a>
+                </div>
+                    <div class="card-action">
+                    <a class="btn-floating gradient-45deg-amber-amber tooltipped" data-position="top" data-tooltip="OK" href="{% url 'cursos:cursobuscar' %}"><i class="material-icons">check</i></a>
+                    <a class="btn-floating gradient-45deg-indigo-light-blue tooltipped" data-position="top" data-tooltip="Editar" href="{% url 'cursos:cursoeditar' curso.id_curso %}"><i class="material-icons">edit</i></a>
+                    <a class="btn-floating gradient-45deg-red-pink tooltipped" data-position="top" data-tooltip="Eliminar" href="{% url 'cursos:cursoeliminar' curso.id_curso %}"><i class="material-icons">delete</i></a>
+               </div>
+        </div>
     </div>
-</div>
-
-
+  </div>
 {% endblock %}

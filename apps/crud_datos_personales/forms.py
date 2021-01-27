@@ -28,6 +28,6 @@ class datospersonalesForm(forms.ModelForm):
             'a_paterno': forms.TextInput(attrs={'class': 'form-control'}),
             'a_materno': forms.TextInput(attrs={'class': 'form-control'}),
             'edad': forms.TextInput(attrs={'class': 'form-control'}),
-            'tipo_usuario': forms.Select(attrs={'class': 'form-control'}),
-            'datos_cuenta': forms.Select(attrs={'class': 'form-control'}),
+            'tipo_usuario': forms.Select(attrs={}),
+            'datos_cuenta': forms.Select(attrs={}),
         }

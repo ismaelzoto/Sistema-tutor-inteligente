@@ -1,5 +1,5 @@
 from django.conf.urls import url
-from apps.crud_tipousuario.views import tipoCreate,tipoList, tipoDelete, tipoUpdate, tipoShow, search
+from apps.crud_tipousuario.views import tipoCreate, tipoList, tipoDelete, tipoUpdate, tipoShow, search
 
 urlpatterns = [
     url(r'^nuevo/', tipoCreate.as_view(), name='tipocrear'),

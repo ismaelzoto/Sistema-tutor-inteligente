@@ -23,9 +23,9 @@
           <h5 class="header col s12 light">Hola <b> {{ user.first_name }} </b>
               esta pagina es exclusiva para usuarios registrados</h5>
       </div>
-      <div class="row center">
+      <center>
         <a href="{% url 'cursos:cursobuscar' %}" id="download-button" class="btn-large waves-effect waves-light blue-grey">Iniciar</a>
-      </div>
+      </center>
       <br><br>
 
     </div>
@@ -33,40 +33,41 @@
 
     </body>
     {% else %}
-<body>
+ <!--div-- class="page-header header-filter" data-parallax="true" style="background-image: url('/static/img2/itca2.jpeg')"></div-->
 
+ <body>
       <h2 align="center">Registrate ó inicia sesión</h2>
-     <h3 align="right"><a href="{% url 'bienvenida' %}">Open<em>mind</em></a></h3>
+     <h3 class="center"><a href="{% url 'bienvenida' %}">Open<em>mind</em></a></h3>
 
-<div class="container">
+<div class="container" >
     <div class="section">
 
       <!--   Icon Section   -->
       <div class="row">
-        <div class="col s12 m12 l12">
+        <div class="col s12 m8">
           <div class="icon-block">
             <h2 class="center light-blue-text"><i class="material-icons">flash_on</i></h2>
             <h5 class="center">Speeds up development</h5>
 
-            <p class="light">We did most of the heavy lifting for you to provide a default stylings that incorporate our custom components. Additionally, we refined animations and transitions to provide a smoother experience for developers.</p>
+            <p class="light">Hicimos la mayor parte del trabajo pesado para que usted proporcione un estilo predeterminado que incorpore nuestros componentes personalizados. Además, refinamos animaciones y transiciones para brindar una experiencia más fluida para los desarrolladores.</p>
           </div>
         </div>
 
-        <div class="col s12 m4">
+        <div class="col s12 m8">
           <div class="icon-block">
             <h2 class="center light-blue-text"><i class="material-icons">group</i></h2>
-            <h5 class="center">User Experience Focused</h5>
+              <h5 class="center">Registrate</h5>
 
-            <p class="light">By utilizing elements and principles of Material Design, we were able to create a framework that incorporates components and animations that provide more feedback to users. Additionally, a single underlying responsive system across all platforms allow for a more unified user experience.</p>
+            <p class="light">Al utilizar elementos y principios de Material Design, pudimos crear un marco que incorpora componentes y animaciones que brindan más comentarios a los usuarios. Además, un único sistema de respuesta subyacente en todas las plataformas permite una experiencia de usuario más unificada.</p>
           </div>
         </div>
 
-        <div class="col s12 m4">
+        <div class="col s12 m8">
           <div class="icon-block">
             <h2 class="center light-blue-text"><i class="material-icons">settings</i></h2>
             <h5 class="center">Easy to work with</h5>
 
-            <p class="light">We have provided detailed documentation as well as specific code examples to help new users get started. We are also always open to feedback and can answer any questions a user may have about Materialize.</p>
+            <p class="light">Hemos proporcionado documentación detallada, así como ejemplos de código específicos para ayudar a los nuevos usuarios a comenzar. También estamos siempre abiertos a comentarios y podemos responder cualquier pregunta que un usuario pueda tener sobre Materialise.</p>
           </div>
         </div>
       </div>
@@ -74,7 +75,7 @@
     </div>
     <br><br>
   </div>
-    </div>
+
 </body>
 {% if messages %}
           {% for message in messages %}

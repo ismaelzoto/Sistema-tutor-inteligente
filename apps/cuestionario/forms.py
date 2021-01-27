@@ -17,6 +17,6 @@ class CuestionarioForm(forms.ModelForm):
 
         widgets = {
             'id_cuestionario': forms.TextInput(attrs={'class': 'form-control'}),
-            'id_pregunta_test': forms.Select(attrs={'class': 'form-control'}),
+            'id_pregunta_test': forms.Select(),
             'resultado_pregunta_cuestionario': forms.TextInput(attrs={'class': 'form-control'}),
         }

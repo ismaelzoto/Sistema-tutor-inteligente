@@ -2,6 +2,7 @@ from django.db import models
 
 # Create your models here.
 
+
 class curso(models.Model):
     id_curso = models.AutoField(primary_key=True)
     nombre_curso = models.CharField(max_length=95)
@@ -10,6 +11,7 @@ class curso(models.Model):
     def __str__(self):
         return '{}'.format(self.nombre_curso)
 
+
 class temas_curso(models.Model):
     id_temas = models.IntegerField(primary_key=True)
     nombre_temas = models.CharField(max_length=45)
@@ -17,6 +19,7 @@ class temas_curso(models.Model):
 
     def __str__(self):
         return '{}'.format(self.nombre_temas)
+
 
 class ejercicios(models.Model):
     id_ejercicio = models.IntegerField(primary_key=True)
@@ -27,6 +30,7 @@ class ejercicios(models.Model):
     def __str__(self):
         return '{}'.format(self.nombre_ejercicio)
 
+
 class distractores_pregunta(models.Model):
     id_distractor = models.IntegerField(primary_key=True)
     distractor = models.CharField(max_length=50)
@@ -35,12 +39,14 @@ class distractores_pregunta(models.Model):
     def __str__(self):
         return '{}'.format(self.distractor)
 
+
 class inteligencias(models.Model):
     id_inteligencias = models.IntegerField(primary_key=True)
     tipo_de_inteligencia = models.CharField(max_length=65)
 
     def __str__(self):
         return '{}'.format(self.tipo_de_inteligencia)
+
 
 class preguntas_test_inteligencia(models.Model):
     id_pregunta_test = models.IntegerField(primary_key=True)
@@ -51,6 +57,7 @@ class preguntas_test_inteligencia(models.Model):
     def __str__(self):
         return '{}'.format(self.pregunta)
 
+
 class datos_cuenta(models.Model):
     id_usuario = models.AutoField(primary_key=True)
     usuario = models.CharField(max_length=85)
@@ -58,6 +65,7 @@ class datos_cuenta(models.Model):
 
     def __str__(self):
         return '{}'.format(self.usuario)
+
 
 class resultados_test_inteligencia(models.Model):
     valor = models.IntegerField(primary_key=True)
@@ -67,12 +75,14 @@ class resultados_test_inteligencia(models.Model):
     def __str__(self):
         return '{}'.format(self.valor)
 
+
 class tipo_usuario(models.Model):
     id_tipo = models.IntegerField(primary_key=True)
     nombre_tipo_usuario = models.CharField(max_length=75)
 
     def __str__(self):
         return '{}'.format(self.nombre_tipo_usuario)
+
 
 class datos_personales(models.Model):
     id_datos = models.IntegerField(primary_key=True)
@@ -86,6 +96,7 @@ class datos_personales(models.Model):
     def __str__(self):
         return '{}'.format(self.edad)
 
+
 class resultados_ejercicios(models.Model):
     id_resultado_ejercicio = models.IntegerField(primary_key=True)
     acierto = models.BooleanField()
@@ -96,6 +107,7 @@ class resultados_ejercicios(models.Model):
     def __str__(self):
         return '{}'.format(self.fecha)
 
+
 class retroalimetacion_preguntas(models.Model):
     id_retroalimetacion = models.IntegerField(primary_key=True)
     ejercicios = models.ForeignKey(ejercicios, null=True, blank=True, on_delete=models.CASCADE)
@@ -104,12 +116,14 @@ class retroalimetacion_preguntas(models.Model):
     def __str__(self):
         return '{}'.format(self.id_retroalimetacion)
 
+
 class resultados(models.Model):
     id_resultados = models.IntegerField(primary_key=True)
     resultados_correctas = models.IntegerField()
     resultados_incorrectas = models.IntegerField()
     ejercicios = models.ForeignKey(ejercicios, null=True, blank=True, on_delete=models.CASCADE)
     datos_cuenta = models.ForeignKey(datos_cuenta, null=True, blank=True, on_delete=models.CASCADE)
+
 
 class cuestionario(models.Model):
     id_cuestionario = models.IntegerField(primary_key=True)

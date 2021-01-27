@@ -1,8 +1,11 @@
 from django.shortcuts import render
 # Create your views here.
-import requests, json
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate
+from django.contrib.auth.decorators import login_required
+from django.http import HttpResponse, HttpResponseRedirect
+from django.template import RequestContext
+import requests, json
 from django.views.generic import CreateView, UpdateView, TemplateView
 from .models import Perfil
 from .forms import SignUpForm, User, EmailChangeForm, forms
@@ -10,24 +13,8 @@ from django.contrib import messages
 from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import TemplateView
-from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect, render_to_response
-from django.template import RequestContext
 from django.urls import reverse_lazy
-
-
-@login_required()
-def email_change(request):
-        form = EmailChangeForm()
-        if request.method == 'POST':
-            form = EmailChangeForm(User, request.POST)
-            if form.is_valid():
-                form.save()
-                return HttpResponseRedirect("/iniciar-sesion/")
-        else:
-            return render_to_response("registros/email_change_form.html", {'form': form},
-                                      context_instance=RequestContext(request))
 
 
 class BienvenidaView(TemplateView):
@@ -178,5 +165,18 @@ class EmailChangeForm(forms.Form):
                         return HttpResponseRedirect("/accounts/profile/")
         else:
             return render_to_response("email_change.html", {'form': form},
+                                      context_instance=RequestContext(request))
+"""
+"""
+@login_required()
+def email_change(request):
+        form = EmailChangeForm()
+        if request.method == 'POST':
+            form = EmailChangeForm(User, request.POST)
+            if form.is_valid():
+                form.save()
+                return HttpResponseRedirect("/iniciar-sesion/")
+        else:
+            return render_to_response("registros/email_change_form.html", {'form': form},
                                       context_instance=RequestContext(request))
 """

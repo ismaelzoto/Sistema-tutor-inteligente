@@ -14,7 +14,7 @@ class ejerciciosCreate(CreateView):
 class ejerciciosList(ListView):
     queryset = ejercicios.objects.order_by('id_ejercicio')
     template_name = 'ejercicios/ejercicios_list.html'
-    paginate_by = 10
+    paginate_by = 2
 
 class ejerciciosUpdate(UpdateView):
     model = ejercicios

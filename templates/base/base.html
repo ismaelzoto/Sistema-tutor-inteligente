@@ -1,4 +1,5 @@
 {% load static %}
+{% load staticfiles %}
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -8,11 +9,6 @@
 
 	{% block extrastatic %}
 	{% endblock %}
-<!--==========================================================================================
-
-
-
-        ========================================================================================================-->
 
     <link rel="stylesheet" href="{% static 'css/tooltip.css' %}" type="text/css">
     <link rel="stylesheet" href="{% static 'css/horizontal-menu/materialize.css' %}" type="text/css">
@@ -20,7 +16,11 @@
     <link rel="stylesheet" href="{% static 'css/jquery.dataTables_themeroller.css' %}" type="text/css">
     <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css">
     <link rel="stylesheet" href="{% static 'css/sweetalert.css' %}" type="text/css">
-    <!--link rel="stylesheet" href="{% static 'css/materialize.min.css' %}" type="text/css"-->
+
+    <link rel="stylesheet" href="{% static 'lib/bootstrap/css/bootstrap.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'lib/bootstrap/css/bootstrap.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'lib/bootstrap/js/bootstrap.min.js' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'lib/bootstrap/js/bootstrap.bundle.min.js' %}" type="text/css">
 
     <script type="text/javascript" src="{% static 'js/sweetalert.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
@@ -40,6 +40,7 @@
     <div class="loader-section section-left"></div>
     <div class="loader-section section-right"></div>
 </div>
+<body>
 <div class="container">
     <div class="row">
         {% block navbar %}
@@ -48,11 +49,10 @@
                     {% if user.is_authenticated %}
                     <li>
                         <div class="user-view">
-                            <div class="background">
-                                <img src="{% static 'images/office.jpg' %}">
+                            <div class="background"><img src="{% static 'images/office.jpg' %}">
                             </div>
                                 <!--i class="material-icons left" style="font-size: 60px">account_circle</i-->
-                                <a href="#!user"><img class="circle" src="{% static 'images/user.png' %}" align="right"></a>
+                                <a href="#!user"><img class="circle responsive-img" src="{% static 'images/avatar-7.png' %}"></a>
                                 <a href="#!name"><span class="white-text name">{{ user.username }}</span></a>
                                 <a href="#!email"><span class="white-text email">{{ user.email }}</span></a>
                         </div>
@@ -93,7 +93,7 @@
 
 
                     </ul>
-
+                    <li><a href="{% url 'cuestionario:cuestionariobuscar' %}">Cuestionario</a></li>
                     <li><a href="{% url 'usuario:datospersonales_buscar' %}">Datos de usuario</a></li>
                     <!--li><a href="{% url 'datosusuario:datosusuario_buscar' %}">Usuarios</a></li-->
                     <!--li><a href="{% url 'tipousuario:tipobuscar' %}">Tipos de usuarios</a></--li-->
@@ -104,7 +104,8 @@
                     <li><a href="{% url 'ejercicios:ejerciciosbuscar' %}">Ejercicios</a></li>
                     <li><a href="{% url 'distractorespregunta:distractorespreguntabuscar' %}">Distractores</a></li>
                         {% else %} <!--#b2ff59-->
-
+                        <b><li class="black-text"><a href="{% url 'bienvenida' %}">Open<em>mind</em></a></li></b>
+                        <li><div class="divider"></div></li>
                         <li><a href="{% url 'sign_in' %}">Iniciar sesión<i class="material-icons">account_box</i></a></li> <br>
                         <li><a href="{% url 'sign_up' %}">Registrate<i class="material-icons">assignment</i></a></li> <br>
 
@@ -139,14 +140,14 @@
                                     <li> <a href="{% url 'cursos:cursobuscar' %}">Cursos<i class="material-icons left">school</i></a></li>
                                     <li> <a href="{% url 'ejercicios:ejerciciosbuscar' %}">Ejercicios<i class="material-icons left">assignment</i></a></li>
 
-                                    <li><a href="{% url 'sign_out' %}"><i class="material-icons right">exit_to_app</i></a></li>
+                                    <li><a href="{% url 'sign_out' %}">Salir<i class="material-icons left">exit_to_app</i></a></li>
                                 <!-- Dropdown Trigger -->
                             </ul>
                             {% else %}
                                     <ul class="left hide-on-med-and-down"><!--#b4dbed-- prurple --- #5e35b1---- #512da8 -->
                                          <!--a href="{% url 'bienvenida' %}" class="brand-logo">OpenMind</a-->
                                         <li><a href="{% url 'sign_in' %}">Iniciar sesión<i class="material-icons left">account_circle</i></a></li>
-                                        <li><a href="{% url 'sign_up' %}">Registrate<i class="material-icons left">assignment</i></a></li>
+                                        <li><a href="{% url 'sign_up' %}">Registrate<i class="material-icons left">person_add</i></a></li>
                                     </ul>
                             {% endif %}
                           </div>
@@ -166,7 +167,6 @@
 
   </div>
 </div>
-<p></p>
 
 {% if user.is_authenticated %}
         {% block footer %}
@@ -182,7 +182,7 @@
     <div class="footer-copyright">
         <div class="row">
                 <div class="col l8 s12">
-                    <a class="white-text text-lighten-3" href="http://www.italtamirano.edu.mx/" target="_blank">Instituto Tecnológico de Cd. Altamirano</a>
+                    <a class="white-text text-lighten-1" href="http://www.italtamirano.edu.mx/" target="_blank">&nbsp; &nbsp; Instituto Tecnológico de Cd. Altamirano</a>
                 </div>
             </div>
         </div>
@@ -236,6 +236,18 @@
             ]
         } );
     } );
+
+    //Script
+    document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.fixed-action-btn');
+    var instances = M.FloatingActionButton.init(elems, options);
+  });
+
+  // Or with jQuery
+
+  $(document).ready(function(){
+    $('.fixed-action-btn').floatingActionButton();
+  });
 </script>
 	{% block extrajs %}
 	{% endblock %}

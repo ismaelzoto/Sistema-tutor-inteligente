@@ -5,22 +5,26 @@ from apps.crud_temas_curso.forms import temas_cursoForm
 from apps.crud_temas_curso.filters import temas_cursoFilter
 from django.urls import reverse_lazy
 
+
 class temas_cursoCreate(CreateView):
     model = temas_curso
     form_class = temas_cursoForm
     template_name = 'temascurso/temas_curso_form.html'
     success_url = reverse_lazy('temascursos:temas_curso_buscar')
 
+
 class temas_cursoList(ListView):
     queryset = temas_curso.objects.order_by('id_temas')
     template_name = 'temascurso/temas_curso_list.html'
     paginate_by = 10
+
 
 class temas_cursoUpdate(UpdateView):
     model = temas_curso
     form_class = temas_cursoForm
     template_name = 'temascurso/temas_curso_form.html'
     success_url = reverse_lazy('temascursos:temas_curso_buscar')
+
 
 class temas_cursoDelete(DeleteView):
     model = temas_curso

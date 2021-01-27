@@ -1,14 +1,13 @@
-
 {% extends 'base/base.html' %}
 
 {% block content %}
     <div class="row">
-        <div class="col s12 m12 l12">
+            <div class="col-md-4 offset-md-4">
             <form method="post">
 	            {% csrf_token %}
 	            {{ form.as_p }}
-	            <button class="btn" type="submit">Guardar<i class="material-icons right">send</i></button>
-	            <a class= "btn" href="{% url 'temascursos:temas_curso_buscar' %}">Cancelar<i class="material-icons right">cancel</i></a>
+	            <button class="btn gradient-45deg-green-teal" type="submit">Guardar<i class="material-icons right">send</i></button>
+	            <a class= "btn gradient-45deg-red-pink" href="{% url 'temascursos:temas_curso_buscar' %}">Cancelar<i class="material-icons right">cancel</i></a>
             </form>
         </div>
     </div>

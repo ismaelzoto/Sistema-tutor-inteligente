@@ -1,6 +1,6 @@
 {% extends "base/base.html" %}
 
-{% block title %}Inicia Sesión{% endblock %}
+{% block title %}Iniciar Sesión{% endblock %}
 
 {% block content %}
 {% if user.is_authenticated %}
@@ -82,21 +82,12 @@
 	</style>
 
 </head>
-<script type="text/javascript" language="JavaScript">
-  function mostrarContrasena(){
-      var tipo = document.getElementById("password");
-      if(tipo.type == "password"){
-          tipo.type = "text";
-      }else{
-          tipo.type = "password";
-      }
-  }
-</script>
-
 <body>
+
 	<div class="container h-100">
 		<div class="d-flex justify-content-center h-100">
 			<div class="user_card">
+			<h3 align="center" class="white-text"> Bienvenido</h3>
 				<div class="d-flex justify-content-center">
 
 					<h2 id="form-title">Iniciar sesión </h2>
@@ -120,16 +111,28 @@
                             <input type="password" name="password" placeholder="Contraseña..." class="form-control" required="">
 						</div>
 
-							<div class="d-flex justify-content-center mt-3 login_container">
-				 				<input class="btn login_btn" type="submit" value="Entrar">
+                        <div class="d-flex justify-content-center mt-3 login_container">
+
+                   			<input class="btn login_btn" type="submit" value="Entrar">
 				   			</div>
 					</form>
-
 				</div>
+<br>
 
-				{% for message in messages %}
-					<p id="messages">{{message}}</p>
+                {% if form.errors %}
+				{% for field in form %}
+                    {% for error in field.errors %}
+                        <div class="alert alert-danger">
+                        <strong> {{ error|escape }}</strong>
+                        </div>
 				{% endfor %}
+                    {% endfor %}
+                    {% for error in form.non_field_errors %}
+                    <div class="alert alert-danger">
+                        <strong> {{ error|escape }}</strong>
+                        </div>
+                {% endfor %}
+                {% endif %}
 
 				<div class="mt-4">
 					<div class="d-flex justify-content-center links">
@@ -140,10 +143,22 @@
                         </div>
 				</div>
 			</div>
-		</div>
+		</h3>
 	</div>
 </body>
-
 </html>
+   <script type="text/javascript" language="JavaScript">
+
+  /*function mostrarContrasena(){
+      var tipo = document.getElementById("password");
+      if(tipo.type == "password"){
+          tipo.type = "text";
+      }else{
+          tipo.type = "password";
+      }
+  }*/
+
+</script>
+
     {% endif %}
 {% endblock content %}

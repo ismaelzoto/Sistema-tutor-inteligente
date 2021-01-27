@@ -63,9 +63,15 @@
         </div>
     </div>
 
-    <div class="fixed-action-btn">
+    <div class="fixed-action-btn" style="width: 200px; height: 550px;">
+        <a class="btn-floating btn-large gradient-45deg-deep-purple-blue tooltipped" data-position="top"  data-tooltip="Agregar curso" href="{% url 'cuestionario:cuestionariocrear' %}">
+            <i class="large material-icons">mode_edit</i>
+        </a>
+    </div>
+
+    <!--div class="fixed-action-btn">
         <a class="btn-floating btn-large red tooltipped" data-position="top" data-tooltip="Agregar" href="{% url 'cuestionario:cuestionariocrear' %}">
             <i class="large material-icons">add</i>
         </a>
-    </div>
+    </div-->
  {% endblock%}

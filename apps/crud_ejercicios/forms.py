@@ -20,5 +20,5 @@ class ejerciciosForm(forms.ModelForm):
             'id_ejercicio': forms.TextInput (attrs={'class':'form-control'}),
             'nombre_ejercicio': forms.TextInput (attrs={'class':'form-control'}),
             'puntaje': forms.TextInput (attrs={'class':'form-control'}),
-            'temas_curso': forms.Select(attrs={'class': 'form-control'}),
+            'temas_curso': forms.Select(attrs={}),
         }

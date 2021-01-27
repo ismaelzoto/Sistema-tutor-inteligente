@@ -1,6 +1,7 @@
 from django import forms
 from apps.sistema.models import temas_curso
 
+
 class temas_cursoForm(forms.ModelForm):
     class Meta:
         model = temas_curso
@@ -19,5 +20,5 @@ class temas_cursoForm(forms.ModelForm):
         widgets = {
             'id_temas': forms.TextInput(attrs={'class':'form-control'}),
             'nombre_temas': forms.TextInput(attrs={'class':'form-control'}),
-            'curso':forms.Select(attrs={'class':'form-control'}),
+            'curso': forms.Select(attrs={}),
         }

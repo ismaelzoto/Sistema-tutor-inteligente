@@ -17,5 +17,5 @@ class distractorespreguntaForm(forms.ModelForm):
         widgets = {
             'id_distractor': forms.TextInput (attrs={'class':'form-control'}),
             'distractor': forms.TextInput (attrs={'class':'form-control'}),
-            'id_ejercicio': forms.Select(attrs={'class': 'form-control'}),
+            'id_ejercicio': forms.Select(attrs={}),
         }

@@ -7,11 +7,6 @@ from django.urls import reverse_lazy
 # Create your views here.
 
 
-class agregarcurso(DetailView):
-    model = curso
-    template_name = 'curso/curso_add.html'
-
-
 class cursoCreate(CreateView):
     model = curso
     form_class = cursoForm
@@ -20,9 +15,9 @@ class cursoCreate(CreateView):
 
 
 class cursoList(ListView):
-    queryset = curso.objects.order_by('nombre_curso')
+    model = curso
     template_name = 'curso/curso_list.html'
-    form_class = cursoForm
+    queryset = curso.objects.order_by('id_curso')
     paginate_by = 2
 
 
@@ -48,5 +43,10 @@ def searchcurso(request):
     curso_list = curso.objects.all()
     curso_filter = cursoFilter(request.GET, queryset=curso_list)
     return render(request, 'curso/curso_list_filter.html', {'filter': curso_filter})
+
+
+class agregarcurso(DetailView):
+    model = curso
+    template_name = 'curso/curso_add.html'
 
 
