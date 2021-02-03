@@ -2,15 +2,65 @@
 
 {% block content %}
 
+{% if user.is_authenticated %}
+
 <div class="row">
-    <div class="col s12 m12 l12">
-            <div class="card blue lighten-5">
-                <div class="card-content black-text">
-                    {% if object_list %}
+        <div class="col-sm-12"> <h3 align="center">CURSOS DISPONIBLES</h3>
+
+                    <!--div class="carousel">
+    <a class="carousel-item" href="#" style="font-size: larger"><img src="/static/img2/poo.jpg"></a>
+    <a class="carousel-item" href="#two!"><img src="/static/img2/po/poo.png"></a>
+    <a class="carousel-item" href="#three!"><img src="/static/img2/po/poo1.png"></a>
+    <a class="carousel-item" href="#four!"><img src="/static/img2/po/poo2.png"></a>
+    <a class="carousel-item" href="#five!"><img src="/static/img2/po/poo3.png"></a>
+  </div-->
+
+
+ <div class="fixed-action-btn" style="width: 200px; height: 550px;">
+        <a class="btn-floating btn-large gradient-45deg-deep-purple-blue tooltipped" data-position="top"  data-tooltip="Agregar curso" href="{% url 'cursos:cursocrear' %}">
+            <i class="large material-icons">mode_edit</i>
+        </a>
+    </div>
+
+      <h4>Buscar</h4> <br>
+        <form method="get" action="{% url 'cursos:cursobuscar' %}">
+           <div class="col s6 m6 l6">
+            <!-- <div class="col s10 m8 l8"> -->
+               <!--div class="col s8 m8 offset-m2 l8 offset-13"-->
+            Nombre de curso: &nbsp {{ filter.form.nombre_curso }}
+               </div>
+            <div class="col s2 m2 l2">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+            <!--button class="btn blue btn-large" name="Search" class="header-search-input -depth-2" type="submit"><i class="large material-icons">search</i></button-->
+            </div>
+        </form>
+        </div>
+    </div>
+
+    <!--ul>
+  % if filter.qs %}
+      % for curso in filter.qs %}
+      <li> { curso.nombre_curso }}</li>
+    % endfor %}
+  % else %}
+    <li>Sorry, no hay re in this list.</li>
+  % endif %}
+</ul-->
+
+                        {% if object_list %}
                         {% for curso in object_list %}
-    	            <span class="card-title">{{ curso.nombre_curso }}</span>
+
+<div class="row">
+    <div class="col-md-4 offset-md-4">
+            <!--div class="card blue lighten-5"-->
+            <div class="card gradient-45deg-blue-indigo">
+                <div class="card-content white-text">
+                    <span class="card-title"> <b>{{ curso.nombre_curso }}</b></span>
+                    <!--img style="width: 100%" src="{ curso.image.url }}"-->
                     <p>Nivel: {{ curso.nivel }} </p>
-                    <div><a class="btn-floating gradient-45deg-deep-purple-blue tooltipped" data-position="top" data-tooltip="Seleccionar" href="{% url 'cursos:cursoagregar' curso.id_curso %}"><i class="material-icons">add</i> </a></div>
+                    <!--div class="card-action">
+                        <a class="btn-floating gradient-45deg-green-teal tooltipped" data-position="top" data-tooltip="Seleccionar" href="{% url 'cursos:cursoagregar' curso.id_curso %}"><i class="material-icons">add</i> </a>
+                    </div-->
 
                 </div>
                     <div class="card-action">
@@ -18,73 +68,45 @@
                     <a class="btn-floating gradient-45deg-indigo-light-blue tooltipped" data-position="top" data-tooltip="Editar" href="{% url 'cursos:cursoeditar' curso.id_curso %}"><i class="material-icons">create</i></a>
                     <a class="btn-floating gradient-45deg-red-pink tooltipped" data-position="top" data-tooltip="Eliminar" href="{% url 'cursos:cursoeliminar' curso.id_curso %}"><i class="material-icons">delete</i></a>
                </div>
+
+
         </div>
     </div>
 </div>
         {% endfor %}
                 {% else %}
-		            <br> <br> <br> <h2>No hay registros de Curso</h2>
+		            <br> <br> <br> <h2>No hay registros de curso en esta lista</h2>
                 {% endif %}
 
-     {% if is_paginated %}
-    <body class = "container">
-      <div class = "row" style = "width:560px;">
-         <div class = "col s12 m12 l12" >
-            <h5>Materialize Pagination</h5>
-            <ul class = "pagination justify-content-center">
+{% if is_paginated %}
+     <div class="row">
+        <div class="col s12 m12 l12">
+            <ul class="pagination justify-content-center">
+
                 {% if page_obj.has_previous %}
-                    <li class="active"><a href="?page={{ page_obj.previous_page_number }}"><i class="material-icons">chevron_left</i></a></li>
-		        {% endif %}
+       	        <li class="waves-effect">
+       	            <a href="?page={{ page_obj.previous_page_number }}"><i class="material-icons">navigate_before</i></a>
+		        </li>
+                {% endif %}
 
                 {% for i in paginator.page_range %}
-                <li class="waves-effect" {% if page_obj.number == i %} class="active" {% endif %}>
-                    <a href="?page={{ i }}" class="page-link">{{ i }}></a>
+                <li {% if page_obj.number == i %} class="active" {% endif %}>
+                    <a href="?page={{ i }}" class="page-item">{{ i }}</a>
                 </li>
                 {% endfor %}
 
-		        {% if page_obj.has_next %}
-                    <li class="waves-effect"><a href="?page={{ page_obj.next_page_number }}"><i class="material-icons">chevron_right</i></a></li>
-    	        {% endif %}
-            </ul>
-         </div>
-      </div>
-   </body>
-    {% endif %}
+                {% if page_obj.has_next %}
+     	        <li class="waves-effect">
+     	            <a href="?page={{ page_obj.next_page_number }}"><i class="material-icons">navigate_next</i></a>
+    	        </li>
+                {% endif %}
 
-
-  <div class="row">
-        <div class="col s12 m12 l12">
-            <ul class="pagination center">
-	            <li>
-		        {% if page_obj.has_previous %}
-       	            <a class="btn blue" href="?page={{ page_obj.previous_page_number }}"><i class="material-icons">navigate_before</i></a>
-		        {% endif %}
-                </li>
-	            <li>
-		        {% if page_obj.has_next %}
-     	            <a class="btn red" href="?page={{ page_obj.next_page_number }}"><i class="material-icons">navigate_next</i></a>
-    	        {% endif %}
-                </li>
             </ul>
         </div>
     </div>
+{% endif %}
 
-        {% if is_paginated %}
-  <ul class="pagination justify-content-center">
-                {% if page_obj.has_previous %}
-       	           <li class="page-item"><a href="?page={{ page_obj.previous_page_number }}" class="page-link">&laquo; Previous</a></li>
-		        {% endif %}
-
-                {% for i in paginator.page_range %}
-                <li class="page-item" {% if page_obj.number == i %} class="active" {% endif %}>
-                    <a href="?page={{ i }}" class="page-link">{{ i }}></a>
-                </li>
-                {% endfor %}
-
-		        {% if page_obj.has_next %}
-                    <li class="page-item"><a href="?page={{ page_obj.next_page_number }}" class="page-link"> Next &raquo;</a> </li>
-    	        {% endif %}
-  </ul>
+    {% else %}
     {% endif %}
 
 {% endblock%}

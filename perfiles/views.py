@@ -8,6 +8,8 @@ from django.template import RequestContext
 import requests, json
 from django.views.generic import CreateView, UpdateView, TemplateView
 from .models import Perfil
+from apps.sistema.models import datos_cuenta
+from apps.crud_datos_cuenta.forms import datoscuentaForm
 from .forms import SignUpForm, User, EmailChangeForm, forms
 from django.contrib import messages
 from django.contrib.auth.views import LoginView, LogoutView
@@ -76,7 +78,9 @@ class HechoView(TemplateView):
 
 class SignUpView(CreateView):
     model = Perfil
+    #model = datos_cuenta
     form_class = SignUpForm
+    #form_class = datoscuentaForm
 
     def form_valid(self, form):
         '''
@@ -85,10 +89,10 @@ class SignUpView(CreateView):
         se redirige a index
         '''
         form.save()
-        usuario = form.cleaned_data.get('username')
-        password = form.cleaned_data.get('password1')
-#       usuario = authenticate(username=usuario, password=password)
-#       login(self.request, usuario)
+        #usuario = form.cleaned_data.get('username')
+        #password = form.cleaned_data.get('password1')
+        #usuario = authenticate(username=usuario, password=password)
+        #login(self.request, usuario)
         return redirect('/nuevo-registro/')
 
 

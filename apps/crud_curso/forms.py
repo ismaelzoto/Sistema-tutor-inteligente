@@ -8,17 +8,13 @@ class cursoForm(forms.ModelForm):
         fields = [
             'id_curso',
             'nombre_curso',
-            'nivel'
+            'nivel',
+            'image'
         ]
         labels = {
             'idcurso': 'Id Curso',
             'nombre_curso' : 'Nombre de curso',
-            'nivel' : 'Nivel'
-        }
-
-        widgets = {
-            'id_curso': forms.TextInput(attrs={'class':'form-control'}),
-            'nombre_curso': forms.TextInput(attrs={'class':'form-control'}),
-            'nivel': forms.TextInput(attrs={'class':'form-control'})
+            'nivel' : 'Nivel',
+            'image' :'Agregar imagen'
         }
 

@@ -1,69 +1,84 @@
 {% extends 'base/base.html' %}
 
 {% block content %}
-    <div class="row">
-        <div class="col s12 center">
-            <h3>Tipos de inteligencias</h3>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col s12">
-            <a class="btn" href="{% url 'inteligencias:inteligencia_crear' %}">Nuevo</a>
-        </div>
-    </div>
-   <div class="row margin">
-     <div class="col s12 m12 l12 center">
-        <table class="striped">
-	        <thead>
-		        <tr>
-			        <th>ID Inteligencias</th>
-			        <th>Nombre de la inteligencia</th>
-                    <th>Mostrar</th>
-                    <th>Editar</th>
-                    <th>Borrar</th>
-                </tr>
-            </thead>
-            <tbody>
-		        {% if object_list %}
-		        {% for inteligencias in object_list %}
-		        <tr>
-                <td width="10%">{{inteligencias.id_inteligencias}}</td>
-                <td width="75%">{{ inteligencias.tipo_de_inteligencia }}</td>
-			        <td width="5%">
-				        <a class="btn-floating gradient-45deg-amber-amber" href="{% url 'inteligencias:inteligencia_mostrar' inteligencias.id_inteligencias %}"><i class="material-icons">zoom_in</i></a>
-                    </td>
-                    <td width="5%">
-                        <a class="btn-floating gradient-45deg-indigo-light-blue" href="{% url 'inteligencias:inteligencia_editar' inteligencias.id_inteligencias %}"><i class="material-icons">create</i></a>
-                    </td>
-                    <td width="5%">
-                        <a class="btn-floating red darken-4" href="{%  url 'inteligencias:inteligencia_eliminar' inteligencias.id_inteligencias %}"><i class="material-icons">delete</i></a>
-			        </td>
-		        </tr>
-		        {% endfor %}
 
-                {% else %}
-		            <h1>No hay registros de inteligencias</h1>
-		        {% endif %}
-            </tbody>
-        </table>
+<div class="row">
+        <div class="col-sm-12"> <h3 align="center">Sección ejercicios</h3>
+
+ <div class="fixed-action-btn" style="width: 200px; height: 550px;">
+        <a class="btn-floating btn-large gradient-45deg-deep-purple-blue tooltipped" data-position="top"  data-tooltip="Agregar ejercicio" href="{% url 'ejercicios:ejercicioscrear' %}">
+            <i class="large material-icons">mode_edit</i>
+        </a>
+    </div>
+
+      <h4>Buscar</h4> <br>
+            <form method="get" action="{% url 'ejercicios:ejerciciosbuscar' %}">
+           <div class="col s6 m6 l6">
+            Nombre de curso: &nbsp {{ filter.form.nombre_ejercicio }}
+               </div>
+            <div class="col s2 m2 l2">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+            </div>
+            </form>
+        </div>
+    </div>
+            {% if object_list %}
+		        {% for ejercicios in object_list %}
+<div class="row">
+    <div class="col-md-4 offset-md-4">
+            <div class="card gradient-45deg-blue-grey-blue">
+                <div class="card-content white-text">
+
+                    <span class="card-title"> <b>{{ejercicios.nombre_ejercicio }}</b></span>
+                    <p>ID: {{ ejercicios.id_ejercicio }} </p>
+                    <p>No. pregunta: {{ ejercicios.puntaje }} </p>
+                    <p>Tipo de Inteligencia: {{ ejercicios.temas_curso }} </p>
+                    <!--div class="card-action">
+                    </div-->
+
+                </div>
+                    <div class="card-action">
+                    <a class="btn-floating gradient-45deg-green-teal tooltipped" data-position="top" data-tooltip="Ver" href="{% url 'ejercicios:ejerciciosmostrar' ejercicios.id_ejercicio %}"><i class="material-icons">zoom_in</i> </a>
+                    <a class="btn-floating gradient-45deg-indigo-light-blue tooltipped" data-position="top" data-tooltip="Editar" href="{% url 'ejercicios:ejercicioseditar' ejercicios.id_ejercicio %}"><i class="material-icons">create</i></a>
+                    <a class="btn-floating gradient-45deg-red-pink tooltipped" data-position="top" data-tooltip="Eliminar" href="{% url 'ejercicios:ejercicioseliminar' ejercicios.id_ejercicio %}"><i class="material-icons">delete</i></a>
+               </div>
+
+
+        </div>
     </div>
 </div>
+        {% endfor %}
+                {% else %}
+		            <br> <br> <br> <h2>No hay registros de ejercicios</h2>
+                {% endif %}
 
-    <div class="row">
+    {% if is_paginated %}
+     <div class="row">
         <div class="col s12 m12 l12">
-            <ul class="pagination center">
-	            <li>
-		        {% if page_obj.has_previous %}
-       	            <a class="btn blue" href="?page={{ page_obj.previous_page_number }}"><i class="material-icons">navigate_before</i></a>
-		        {% endif %}
+            <ul class="pagination justify-content-center">
+
+                {% if page_obj.has_previous %}
+       	        <li class="waves-effect">
+
+       	            <a href="?page={{ page_obj.previous_page_number }}"><i class="material-icons">navigate_before</i></a>
+		        </li>
+                {% endif %}
+
+                {% for i in paginator.page_range %}
+                <li {% if page_obj.number == i %} class="active" {% endif %}>
+                    <a href="?page={{ i }}" class="page-item">{{ i }}</a>
                 </li>
-	            <li>
-		        {% if page_obj.has_next %}
-     	            <a class="btn red" href="?page={{ page_obj.next_page_number }}"><i class="material-icons">navigate_next</i></a>
-    	        {% endif %}
-                </li>
+                {% endfor %}
+
+                {% if page_obj.has_next %}
+     	        <li class="waves-effect">
+     	            <a href="?page={{ page_obj.next_page_number }}"><i class="material-icons">navigate_next</i></a>
+    	        </li>
+                {% endif %}
+
             </ul>
         </div>
     </div>
+        {% endif %}
 
 {% endblock%}

@@ -31,7 +31,7 @@
         </table>
         <p></p>
 
-        <a class="btn-floating gradient-45deg-amber-amber tooltipped" data-position="top" data-tooltip="OK" href="{% url 'cursos:cursobuscar' %}"><i class="material-icons">check</i></a>
+        <a class="btn-floating gradient-45deg-amber-amber tooltipped" data-position="top" data-tooltip="OK" href="{% url 'cursos:cursolistar' %}"><i class="material-icons">check</i></a>
         <a class="btn-floating gradient-45deg-indigo-light-blue tooltipped" data-position="top" data-tooltip="Editar" href="{% url 'cursos:cursoeditar' object.id_curso%}"><i class="material-icons">create</i></a>
         <a class="btn-floating red darken-4 tooltipped" data-position="top" data-tooltip="Borrar" href="{% url 'cursos:cursoeliminar' object.id_curso %}"><i class="material-icons">delete</i></a>
     </div>

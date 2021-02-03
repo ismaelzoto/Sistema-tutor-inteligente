@@ -14,18 +14,41 @@
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
 <!--== #7abecc===#A6E3E9 ==-->
 	<style>
+         body {
+	margin: 0;
+	padding: 0;
+	font-family: 'Poppins', sans-serif;
+
+}
+body:before {
+	content: '';
+	position: fixed;
+	width: 100vw;
+	height: 100vh;
+	background-image: url("/static/img2/itca2.jpeg");
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	-webkit-background-size: cover;
+	background-size: cover;
+	-webkit-filter: blur(10px);
+	-moz-filter: blur(10px);
+	filter: blur(10px);
+}
 		body,
 		html {
 			margin: 0;
 			padding: 0;
 			height: 100%;
-			background: #f0f0f0 !important;
+			/*background: #f0f0f0 !important;*/
 		}
 		.user_card {
 			width: 350px;
 			margin-top: auto;
 			margin-bottom: auto;
-			background: #74b5fc;
+            background-color:rgba(10,200,255,0.7);
+            /*background-image: url("/static/img2/login-bg.jpg");*/
+			/*background: #74b5fc;*/
 			position: relative;
 			display: flex;
 			justify-content: center;
@@ -43,7 +66,7 @@
 		}
 
 		#form-title{
-			color: #fff;
+			color: #ffffff;
 		}
 		.login_btn {
 			width: 100%;
@@ -58,7 +81,7 @@
 			padding: 0 2rem;
 		}
 		.input-group-text {
-			background: #74b5fc; !important;
+			background: none !important; /*#74b5fc;*/
 			color: #171a1d !important;
 			border: 0 !important;
 			border-radius: 0 0 0 0 !important;
@@ -115,10 +138,8 @@
                             {{form.password2}}
 						</div>
 
-
-
 				   		<div class="d-flex justify-content-center mt-3 login_container">
-				 			<input class="btn login_btn" type="submit" value="Registrar">
+                           <input class="btn login_btn" type="submit" value="Registrar">
 				   		</div>
 
 					</form>
@@ -139,12 +160,12 @@
                         </div>
                 {% endfor %}
                 {% endif %}
-
+                                                <!--======== class="ml-2" ==========-->
 				<div class="mt-4">
 					<div class="d-flex justify-content-center links">
-						¿Ya tienes una cuenta? <a href="{% url 'sign_in' %}" class="ml-2">Inicia sesión</a>
+                        <b>¿Ya tienes una cuenta? </b> <a href="{% url 'sign_in' %}" class="white-text">&nbsp; Iniciar sesión</a>
 					</div>
-				</div>
+				</div><br><br>
 			</div>
 		</div>
 	</div>
@@ -157,7 +178,7 @@
 		var form_fields = document.getElementsByTagName('input')
 		form_fields[1].placeholder='Usuario...';
 		form_fields[2].placeholder='Nombre...';
-		form_fields[3].placeholder='Correo electrónico...';
+		form_fields[3].placeholder='name@example.com...';
 		form_fields[4].placeholder='Contraseña...';
 		form_fields[5].placeholder='Confirme su contraseña...';
 

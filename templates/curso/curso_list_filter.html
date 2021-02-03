@@ -1,17 +1,21 @@
 {% extends 'base/base.html' %}
 
 {% block content %}
-    <div class="row">
-        <div class="col-sm-12"> <h3 align="center">CURSOS DISPONIBLES</h3>
+
+{% if user.is_authenticated %}
+
+<div class="row">
+      <div class="col-sm-12"> <h3 align="center"> BUSCAR CURSOS</h3>
 
 <!--div align="center" class="nav-wrapper container">
-    <a href="{% url 'cursos:cursocrear' %}"><i class="material-icons" style="font-size: 45px">library_add</i><h6>Agregar Curso</h6></a></div-->
+    <a href=" % url 'cursos:cursocrear' %}"><i class="material-icons" style="font-size: 45px">library_add</i><h6>Agregar Curso</h6></a></div-->
 
  <div class="fixed-action-btn" style="width: 200px; height: 550px;">
         <a class="btn-floating btn-large gradient-45deg-deep-purple-blue tooltipped" data-position="top"  data-tooltip="Agregar curso" href="{% url 'cursos:cursocrear' %}">
             <i class="large material-icons">mode_edit</i>
         </a>
     </div>
+
 
       <h4>Buscar</h4> <br>
         <form method="get">
@@ -32,15 +36,34 @@
         {% for curso in filter.qs %}
 
 <div class="row">
-    <div class="col-sm-6">
-            <div class="card gradient-45deg-blue-grey-blue">
+    <!--div class="col-sm-6"-->
+         <!--div class="col s12 m6"-->
+      <div class="col-md-4 offset-md-4">
+            <div class="card gradient-45deg-green-teal">
                 <div class="card-content white-text">
-                    <span class="card-title"> <b>{{ curso.nombre_curso }}</b> </span>
-                    <br> <p>Nivel: {{ curso.nivel }} </p> <br>
+                    <span class="card-title"><b>{{ curso.nombre_curso }}</b></span>
+                    <img src="{{ curso.image.url }}" style="width: 100%">
+                    <p>Nivel: {{ curso.nivel }} </p>
+
+                </div>
+                    <div class="card-action">
+                    <a class="btn-floating gradient-45deg-green-teal tooltipped" data-position="top" data-tooltip="Ver" href="{% url 'cursos:cursomostrar' curso.id_curso %}"><i class="material-icons">zoom_in</i></a>
+                    <a class="btn-floating gradient-45deg-indigo-light-blue tooltipped" data-position="top" data-tooltip="Editar" href="{% url 'cursos:cursoeditar' curso.id_curso %}"><i class="material-icons">edit</i></a>
+                    <a class="btn-floating gradient-45deg-red-pink tooltipped" data-position="top" data-tooltip="Eliminar" href="{% url 'cursos:cursoeliminar' curso.id_curso %}"><i class="material-icons">delete</i></a>
+               </div>
+        </div>
+    </div>
+  <!--/div-->
+</div>
+            <!--div class="card gradient-45deg-blue-grey-blue">
+                <div class="card-content white-text">
+                    <span class="card-title"> <b>{ curso.nombre_curso }}</b> </span>
+                    <br> <p>Nivel: { curso.nivel }}
+                            ID: { curso.id_curso }}</p> <br>
                     <!--div class="card-action">
                     <a class="btn-floating gradient-45deg-deep-purple-blue tooltipped" data-position="top" data-tooltip="Seleccionar" href="{% url 'cursos:cursoagregar' curso.id_curso %}"><i class="material-icons">add</i> </a>
                     </div-->
-                </div>
+                <!--/div>
                     <div class="card-action">
                     <a class="btn-floating gradient-45deg-green-teal tooltipped" data-position="top" data-tooltip="Ver" href="{% url 'cursos:cursomostrar' curso.id_curso %}"><i class="material-icons">zoom_in</i> </a>
                     <a class="btn-floating gradient-45deg-indigo-light-blue tooltipped" data-position="top" data-tooltip="Editar" href="{% url 'cursos:cursoeditar' curso.id_curso %}"><i class="material-icons">create</i></a>
@@ -48,44 +71,45 @@
                </div>
         </div>
     </div>
-  </div>
+  </div-->
         {% endfor %}
                 {% else %}
 		            <br> <br> <br> <h2>No hay registros de Curso</h2>
                 {% endif %}
 
-
-
-    {% if is_paginated %}
+<!--% if is_paginated %}
     <body class = "container">
       <div class = "row" style = "width:560px;">
          <div class = "col s12 m12 l12" >
             <h5>Materialize Pagination</h5>
             <ul class = "pagination justify-content-center">
-                {% if page_obj.has_previous %}
+                % if page_obj.has_previous %}
                     <li class="active"><a href="?page={{ page_obj.previous_page_number }}"><i class="material-icons">chevron_left</i></a></li>
-		        {% endif %}
+		        % endif %}
 
-                {% for i in paginator.page_range %}
-                <li class="waves-effect" {% if page_obj.number == i %} class="active" {% endif %}>
+                % for i in paginator.page_range %}
+                <li class="waves-effect" % if page_obj.number == i %} class="active" % endif %}>
                     <a href="?page={{ i }}" class="page-link">{{ i }}></a>
                 </li>
-                {% endfor %}
+                % endfor %}
 
-		        {% if page_obj.has_next %}
+		        % if page_obj.has_next %}
                     <li class="waves-effect"><a href="?page={{ page_obj.next_page_number }}"><i class="material-icons">chevron_right</i></a></li>
-    	        {% endif %}
+    	        % endif %}
             </ul>
          </div>
       </div>
    </body>
-    {% endif %}
+    % endif %}
 
-    <!--ul class="pagination">
+    <ul class="pagination">
     <li class="disabled"><a href="?page={{ page_obj.previous_page_number }}"><i class="material-icons">chevron_left</i></a></li>
     <li class="active"><a href="#!">1</a></li>
     <li class="waves-effect"><a href="?page={{ i }}">2</a></li>
     <li class="waves-effect"><a href="?page={{ page_obj.next_page_number }}"><i class="material-icons">chevron_right</i></a></li>
   </ul-->
+
+    {% else %}
+    {% endif %}
 
 {% endblock %}

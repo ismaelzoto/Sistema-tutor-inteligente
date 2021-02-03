@@ -1,5 +1,4 @@
 from django.db import models
-
 # Create your models here.
 
 
@@ -7,6 +6,7 @@ class curso(models.Model):
     id_curso = models.AutoField(primary_key=True)
     nombre_curso = models.CharField(max_length=95)
     nivel = models.CharField(max_length=45)
+    image = models.ImageField(upload_to='media/images/', default=None)
 
     def __str__(self):
         return '{}'.format(self.nombre_curso)

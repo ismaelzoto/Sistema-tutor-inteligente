@@ -7,8 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-	{% block extrastatic %}
-	{% endblock %}
+	{% block extrastatic %} {% endblock %}
 
     <link rel="stylesheet" href="{% static 'css/tooltip.css' %}" type="text/css">
     <link rel="stylesheet" href="{% static 'css/horizontal-menu/materialize.css' %}" type="text/css">
@@ -19,8 +18,9 @@
 
     <link rel="stylesheet" href="{% static 'lib/bootstrap/css/bootstrap.min.css' %}" type="text/css">
     <link rel="stylesheet" href="{% static 'lib/bootstrap/css/bootstrap.css' %}" type="text/css">
-    <link rel="stylesheet" href="{% static 'lib/bootstrap/js/bootstrap.min.js' %}" type="text/css">
-    <link rel="stylesheet" href="{% static 'lib/bootstrap/js/bootstrap.bundle.min.js' %}" type="text/css">
+
+    <!--script src="% static 'lib/bootstrap/js/bootstrap.min.js' %}" type="text/javascript"></script>
+    <script src="% static 'lib/bootstrap/js/bootstrap.bundle.min.js' %}" type="text/javascript"></script-->
 
     <script type="text/javascript" src="{% static 'js/sweetalert.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
@@ -62,15 +62,21 @@
                         <li class="bold"><a class="collapsible-header">Perfil</a>
                             <div class="collapsible-body">
                             <ul>
-                                <li><a href="{% url 'preguntastest:preguntasbuscar' %}">Preguntas</a></li>
+                                <li><a href="{% url 'preguntastest:preguntaslistar' %}">Preguntas</a></li>
                             </ul>
                             </div>
-		       <div class="collapsible-body">
+		                    <div class="collapsible-body">
                     	        <ul>
-                                    <li><a href="{% url 'cursos:cursobuscar' %}">Cursos</a></li>
-                                    <!--li><a href="{% url 'email_change' %}">Actualizar correo</a></li-->
+                                    <li><a href="{% url 'cursos:cursolistar' %}">Cursos</a></li>
+                                    <!--li><a href="% url 'email_change' %}">Actualizar correo</a></li-->
                                 </ul>
                             </div>
+                            <div class="collapsible-body">
+                    	        <ul>
+                                    <li><a href="{% url 'ejercicios:ejercicioslistar' %}">Ejercicios</a></li>
+                                </ul>
+                            </div>
+
                             <div class="collapsible-body">
                                 <ul>
                                     <li><a href="{% url 'password_change' %}">Actulizar contraseña</a></li>
@@ -80,29 +86,30 @@
                   <li class="bold"><a class="collapsible-header">Roles</a>
                       <div class="collapsible-body">
                           <ul>
-                    <li><a href="{% url 'datosusuario:datosusuario_buscar' %}">Usuarios</a></li>
-
+                              <li><a href="{% url 'cuestionario:cuestionariolistar' %}">Cuestionario</a></li>
+                              <!--li><a href="% url 'datosusuario:datosusuario_buscar' %}">Usuarios</a></li-->
                           </ul>
                       </div>
                       <div class="collapsible-body">
                           <ul>
-                      <li><a href="{% url 'tipousuario:tipobuscar' %}">Tipos de usuarios</a></li>
+                       <li><a href="{% url 'inteligencias:inteligencias_listar' %}">Inteligencias</a></li>
+                        <!--li><a href="% url 'tipousuario:tipobuscar' %}">Tipos de usuarios</a></li-->
 
                           </ul>
                       </div>
 
 
                     </ul>
-                    <li><a href="{% url 'cuestionario:cuestionariobuscar' %}">Cuestionario</a></li>
+
                     <li><a href="{% url 'usuario:datospersonales_buscar' %}">Datos de usuario</a></li>
-                    <!--li><a href="{% url 'datosusuario:datosusuario_buscar' %}">Usuarios</a></li-->
-                    <!--li><a href="{% url 'tipousuario:tipobuscar' %}">Tipos de usuarios</a></--li-->
-                    <li><a href="{% url 'inteligencias:inteligencia_buscar' %}">Inteligencias</a></li>
-                    <!--li><a href="{% url 'preguntastest:preguntasbuscar' %}">Preguntas</a></li-->
-                    <!--li><a href="{% url 'cursos:cursobuscar' %}">Cursos</a></li-->
+                    <li><a href="{% url 'datosusuario:datosusuario_buscar' %}">Usuarios</a></li>
+                    <li><a href="{% url 'tipousuario:tipobuscar' %}">Tipos de usuarios</a></li>
+
+                    <!--li><a href="% url 'preguntastest:preguntasbuscar' %}">Preguntas</a></li-->
+                    <!--li><a href="% url 'cursos:cursobuscar' %}">Cursos</a></li-->
                     <li><a href="{% url 'temascursos:temas_curso_buscar' %}">Temas de los cursos</a></li>
-                    <li><a href="{% url 'ejercicios:ejerciciosbuscar' %}">Ejercicios</a></li>
-                    <li><a href="{% url 'distractorespregunta:distractorespreguntabuscar' %}">Distractores</a></li>
+                    <!--li><a href="% url 'ejercicios:ejerciciosbuscar' %}">Ejercicios</a></li-->
+                    <li><a href="{% url 'distractorespregunta:distractorespreguntalistar' %}">Distractores</a></li>
                         {% else %} <!--#b2ff59-->
                         <b><li class="black-text"><a href="{% url 'bienvenida' %}">Open<em>mind</em></a></li></b>
                         <li><div class="divider"></div></li>
@@ -136,9 +143,9 @@
                                 <ul class="right hide-on-med-and-down">
                                     <!--li> {{ user.username }}<i class="material-icons left">account_box</i></li-->
                                     <!--li> <a href="{% url 'cursos:cursobuscar' %}"><i class="material-icons right">school</i></a></li-->
-                                    <li> <a href="{% url 'preguntastest:preguntasbuscar' %}">Preguntas<i class="material-icons left">mode_comment</i></a></li>
-                                    <li> <a href="{% url 'cursos:cursobuscar' %}">Cursos<i class="material-icons left">school</i></a></li>
-                                    <li> <a href="{% url 'ejercicios:ejerciciosbuscar' %}">Ejercicios<i class="material-icons left">assignment</i></a></li>
+                                    <li> <a href="{% url 'preguntastest:preguntaslistar' %}">Preguntas<i class="material-icons left">mode_comment</i></a></li>
+                                    <li> <a href="{% url 'cursos:cursolistar' %}">Cursos<i class="material-icons left">school</i></a></li>
+                                    <li> <a href="{% url 'ejercicios:ejercicioslistar' %}">Ejercicios<i class="material-icons left">assignment</i></a></li>
 
                                     <li><a href="{% url 'sign_out' %}">Salir<i class="material-icons left">exit_to_app</i></a></li>
                                 <!-- Dropdown Trigger -->
@@ -210,11 +217,10 @@
 <script type="text/javascript" src="{% static 'js/custom-script.js' %}"></script>
 
 <script type="text/javascript" src="{% static 'js/funcionesAjax.js' %}"></script>
-<!--=======================================================================================================
 
 
 
-==========================================================================================================================-->
+<!--====================================================================================================================================-->
 <script>
     $(document).ready(function() {
         $('.collapsible').collapsible();
@@ -248,6 +254,39 @@
   $(document).ready(function(){
     $('.fixed-action-btn').floatingActionButton();
   });
+
+//Carousel
+/*     document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.carousel');
+    var instances = M.Carousel.init(elems, options);
+  });
+
+  // Or with jQuery
+
+  $(document).ready(function(){
+    $('.carousel').carousel();
+  });
+
+//Slider
+
+    var instance = M.Carousel.init({
+    fullWidth: true,
+    indicators: true
+  });
+
+  // Or with jQuery
+
+  $('.carousel.carousel-slider').carousel({
+    fullWidth: true,
+    indicators: true
+  });
+
+
+ /* $(document).ready(function () {
+      $('.myCarousel').carousel
+
+  });*/
+
 </script>
 	{% block extrajs %}
 	{% endblock %}

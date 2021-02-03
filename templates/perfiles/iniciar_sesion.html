@@ -15,18 +15,39 @@
 
 <!--===#7abecc====#74cfbf====rgba(101,186,75,0.5) ;====best=#7abaff, #74b5fc=====-->
 	<style>
+        body {
+	margin: 0;
+	padding: 0;
+	font-family: 'Poppins', sans-serif;
+}
+body:before {
+	content: '';
+	position: fixed;
+	width: 100vw;
+	height: 100vh;
+	background-image: url("/static/img2/itca2.jpeg");
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	-webkit-background-size: cover;
+	background-size: cover;
+	-webkit-filter: blur(10px);
+	-moz-filter: blur(10px);
+	filter: blur(10px);
+}
 		body,
 		html {
 			margin: 0;
 			padding: 0;
 			height: 100%;
-			background: #f0f0f0; !important;
 		}
 		.user_card {
 			width: 350px;
 			margin-top: auto;
 			margin-bottom: auto;
-			background: #74b5fc;
+            background-color:rgba(10,200,255,0.7);
+			/*background: #74b5fc;*/
+            /*background-image: url("/static/img2/backg1.jpg");*/
 			position: relative;
 			display: flex;
 			justify-content: center;
@@ -45,7 +66,6 @@
 
 		#form-title{
 			color: #171a1d;
-
 		}
 
 		.login_btn {
@@ -61,8 +81,10 @@
 			padding: 0 2rem;
 		}
 		.input-group-text {
+            align-content: center;
             /*background: #f7ba5b !important;*/
-			background: #74b5fc; !important;
+			/*background: #74b5fc; !important;*/
+            background: none;
             color: black !important;
 			border: 0 !important;
 			border-radius: 0.50rem 0.50rem 0.50rem 0.50rem !important;
@@ -70,12 +92,13 @@
 		.input_user,
 		.input_pass:focus {
 			box-shadow: none !important;
-			outline: 0px !important;
+			outline: 0; !important;
 		}
 
 		#messages{
 			background-color: grey;
-			color: #fff;
+			/*color: #fff;*/
+            color: #ffffff;
 			padding: 10px;
 			margin-top: 10px;
 		}
@@ -112,7 +135,6 @@
 						</div>
 
                         <div class="d-flex justify-content-center mt-3 login_container">
-
                    			<input class="btn login_btn" type="submit" value="Entrar">
 				   			</div>
 					</form>
@@ -136,12 +158,12 @@
 
 				<div class="mt-4">
 					<div class="d-flex justify-content-center links">
-                        <b>	¿No tienes una cuenta? </b> <a href="{% url 'sign_up' %}" class="ml-2">Registrate</a>
+                        <b>	¿No tienes una cuenta? </b> <a href="{% url 'sign_up' %}" class="white-text"> &nbsp;Registrate</a>
 					</div> <br>
                     	<div class="d-flex justify-content-center links">
-                <a href="{% url 'password_reset' %}">Olvidaste la Contraseña?</a>
+                <a href="{% url 'password_reset' %}" class="white-text">¿Olvidaste la Contraseña?</a>
                         </div>
-				</div>
+				</div><br>
 			</div>
 		</h3>
 	</div>

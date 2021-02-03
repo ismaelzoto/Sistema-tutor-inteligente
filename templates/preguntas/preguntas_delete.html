@@ -8,7 +8,7 @@
                 {% csrf_token %}
                 <h4>¿Desea eliminar el registro de la pregunta <b>{{ object.pregunta }}</b>?</h4>
                 <button class="btn btn-danger" type="submit">Sí, eliminar</button>
-                <a class= "btn btn-default" href="{% url 'preguntastest:preguntasbuscar' %}">Cancelar</a>
+                <a class= "btn btn-default" href="{% url 'preguntastest:preguntaslistar' %}">Cancelar</a>
             </form>
         </div>
     </div>

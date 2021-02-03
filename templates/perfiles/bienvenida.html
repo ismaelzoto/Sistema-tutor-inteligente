@@ -3,19 +3,32 @@
 {% block title %}Bienvenido{% endblock %}
 
 {% block content %}
-
 <!DOCTYPE html>
-{% if user.is_authenticated %}
+    <html>
+<head>
+</head>
+    {% if user.is_authenticated %}
 <!--h2 align="center">Área para miembros</h2>
 
 <p>
     <h3>Bienvenido</h3>
-    Hola <b> {{user.first_name}}</b>,
+    Hola <b> user.first_name}}</b>,
     esta página es exclusiva para usuarios registrados.
 </p-->
-    <body>
-    <div class="col s12">
-        <div class="section no-pad-bot" id="index-banner">
+
+<body>
+
+<!--script src="/static/js2/vendor/jquery-1.11.2.min.js" type="text/javascript"></script>
+<script src="/static/js2/vendor/bootstrap.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="/static/lib/bootstrap/js/bootstrap.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $('.carousel-inner').carousel()
+    });
+</script-->
+
+<div class="col s12">
+  <div class="section no-pad-bot" id="index-banner">
     <div class="container">
       <br><br>
       <h1 class="header center blue-text">Bienvenido (a)</h1>
@@ -24,22 +37,42 @@
               esta pagina es exclusiva para usuarios registrados</h5>
       </div>
       <center>
-        <a href="{% url 'cursos:cursobuscar' %}" id="download-button" class="btn-large waves-effect waves-light blue-grey">Iniciar</a>
+        <a href="{% url 'cursos:cursolistar' %}" id="download-button" class="btn-large waves-effect waves-light blue-grey">Iniciar</a>
       </center>
       <br><br>
 
     </div>
   </div>
 
+
     </body>
+        </html>
     {% else %}
- <!--div-- class="page-header header-filter" data-parallax="true" style="background-image: url('/static/img2/itca2.jpeg')"></div-->
+<body>
 
- <body>
-      <h2 align="center">Registrate ó inicia sesión</h2>
-     <h3 class="center"><a href="{% url 'bienvenida' %}">Open<em>mind</em></a></h3>
+ <!--div class="page-header header-filter" data-parallax="true" style="background-image: url('/static/img2/portfolio_big_3.jpg')"></div-->
 
-<div class="container" >
+ <!-- Wrapper for slides >
+                    <img src="/static/img2/portfolio_2.jpg" alt="First slide"-->
+                    <!-- Static Header -->
+                    <div class="header-text hidden-xs">
+                        <div class="col-md-12 text-center">
+                               <h2 align="center">Registrate ó inicia sesión</h2>
+                                 <h3 class="center"><a href="{% url 'bienvenida' %}">Open<em>mind</em></a></h3>
+                            <h2> SISTEMA TUTOR INTELIGENTE</h2>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <!--div class="fixed-action-btn" style="width: 1300px; height: 400px;">
+                                <a class="btn-floating btn-large gradient-45deg-blue-indigo tooltipped" data-position="top" data-tooltip="Iniciar sesion" href="{% url 'sign_in' %}"><i class="material-icons">account_box</i></a> &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp;
+                                <a class="btn-floating btn-large gradient-45deg-green-teal tooltipped" data-position="top" data-tooltip="Registrar" href="{% url 'sign_up' %}"><i class="material-icons">person_add</i></a>
+                            </div-->
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+ <div class="container" >
     <div class="section">
 
       <!--   Icon Section   -->
@@ -77,6 +110,7 @@
   </div>
 
 </body>
+
 {% if messages %}
           {% for message in messages %}
                         <div class="alert temp-alert {% if message.tags %}alert-{% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}danger{% else %}{{ message.tags }}{% endif %}{% endif %}" role="alert">{{ message }}</div>

@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_filters',
     'apps.sistema',
     'apps.crud_tipousuario',
     'apps.crud_preguntas_test_inteligencia',
@@ -99,12 +100,6 @@ DATABASES = {
         'PORT': 5432,
     }
 }
-
-"""
-    'CLIENT': {
-            'host': "mongodb+srv://<username>:" +'<password>'+ "@<cluster-name>-yb6dk.mongodb.net/test"
-"""
-
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
 
@@ -145,10 +140,12 @@ LOGIN_REDIRECT_URL = '/'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
-
 STATIC_URL = '/static/'
-
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
+
+
+MEDIA_URL = '/media/'
+#MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 #also tried with 465 or 25
 #SITE_HOST = '127.0.0.1:8000'

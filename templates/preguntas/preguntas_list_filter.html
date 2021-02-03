@@ -3,61 +3,53 @@
 
 {% block content %}
 <div class="row">
-    <div class="col s12 m8 l4">
-        <h4>Buscar</h4>
-        <form method="get">
-            <div class="col s10 m10 l10">
-                {{ filter.form.pregunta }}
-            </div>
-            <div class="col s2 m2 l2">
-                <button name="Search" class="header-search-input z-depth-2" type="submit"><i class="medium material-icons">search</i></button>
-            </div>
-            <p>
+        <div class="col-sm-12"> <h3 align="center">Sección Preguntas</h3>
 
-            </p>
-        </form>
-        <table class="table-bordered">
-	        <thead>
-		        <tr>
-                    <th width="5%">Id:</th>
-                    <th width="5%"># pregunta:</th>
-                    <th width="55%">Pregunta:</th>
-                    <th width="20%">Inteligencia:</th>
-                    <th width="5%">Mostrar</th>
-                    <th width="5%">Editar</th>
-                    <th width="5%">Borrar</th>
-            </thead>
-            <tbody>
-            {% if filter.qs %}
-		        {% for preguntas_test_inteligencia in filter.qs %}
-		        <tr>
-			        <td>{{ preguntas_test_inteligencia.id_pregunta_test }}</td>
-                    <td>{{ preguntas_test_inteligencia.num_pregunta }}</td>
-                    <td>{{ preguntas_test_inteligencia.pregunta }}</td>
-                    <td>{{ preguntas_test_inteligencia.inteligencias }}</td>
-			        <td>
-				        <a class="btn-floating gradient-45deg-amber-amber" href="{% url 'preguntastest:preguntasmostrar' preguntas_test_inteligencia.id_pregunta_test %}"><i class="material-icons">zoom_in</i></a>
-                    </td>
-                    <td>
-                        <a class="btn-floating gradient-45deg-indigo-light-blue" href="{% url 'preguntastest:preguntaseditar' preguntas_test_inteligencia.id_pregunta_test %}"><i class="material-icons">create</i></a>
-                    </td>
-                    <td>
-                        <a class="btn-floating red darken-4" href="{% url 'preguntastest:preguntaseliminar' preguntas_test_inteligencia.id_pregunta_test %}"><i class="material-icons">delete</i></a>
-			        </td>
-		        </tr>
-		        {% endfor %}
-
-                {% else %}
-		            <h1>No hay registros de preguntas</h1>
-		        {% endif %}
-            </tbody>
-        </table>
-    </div>
-</div>
-
-<div class="fixed-action-btn">
-        <a class="btn-floating btn-large red tooltipped" data-position="top" data-tooltip="Agregar" href="{% url 'preguntastest:preguntascrear' %}">
-            <i class="large material-icons">add</i>
+ <div class="fixed-action-btn" style="width: 200px; height: 550px;">
+        <a class="btn-floating btn-large gradient-45deg-deep-purple-blue tooltipped" data-position="top"  data-tooltip="Agregar pregunta" href="{% url 'preguntastest:preguntascrear' %}">
+            <i class="large material-icons">mode_edit</i>
         </a>
     </div>
+
+      <h4>Buscar</h4> <br>
+            <form method="get" action="{% url 'preguntastest:preguntasbuscar' %}">
+           <div class="col s6 m6 l6">
+            Nombre de curso: &nbsp {{ filter.form.pregunta }}
+               </div>
+            <div class="col s2 m2 l2">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+            </div>
+            </form>
+        </div>
+    </div>
+            {% if filter.qs %}
+		        {% for preguntas_test_inteligencia in filter.qs %}
+<div class="row">
+    <div class="col-md-4 offset-md-4">
+            <div class="card gradient-45deg-blue-grey-blue">
+                <div class="card-content white-text">
+
+                    <span class="card-title"> <b>{{ preguntas_test_inteligencia.pregunta }}</b></span>
+                    <p>ID: {{ preguntas_test_inteligencia.id_pregunta_test }} </p>
+                    <p>No. pregunta: {{ preguntas_test_inteligencia.num_pregunta }} </p>
+                    <p>Tipo de Inteligencia: {{ preguntas_test_inteligencia.inteligencias }} </p>
+                    <!--div class="card-action">
+                    </div-->
+
+                </div>
+                    <div class="card-action">
+                    <a class="btn-floating gradient-45deg-green-teal tooltipped" data-position="top" data-tooltip="Ver" href="{% url 'preguntastest:preguntasmostrar' preguntas_test_inteligencia.id_pregunta_test %}"><i class="material-icons">zoom_in</i> </a>
+                    <a class="btn-floating gradient-45deg-indigo-light-blue tooltipped" data-position="top" data-tooltip="Editar" href="{% url 'preguntastest:preguntaseditar' preguntas_test_inteligencia.id_pregunta_test %}"><i class="material-icons">create</i></a>
+                    <a class="btn-floating gradient-45deg-red-pink tooltipped" data-position="top" data-tooltip="Eliminar" href="{% url 'preguntastest:preguntaseliminar' preguntas_test_inteligencia.id_pregunta_test %}"><i class="material-icons">delete</i></a>
+               </div>
+
+
+        </div>
+    </div>
+</div>
+        {% endfor %}
+                {% else %}
+		            <br> <br> <br> <h2>No hay registros de pregunta</h2>
+                {% endif %}
+
 {% endblock%}

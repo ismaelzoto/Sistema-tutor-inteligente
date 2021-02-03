@@ -1,6 +1,7 @@
 from django import forms
 from apps.sistema.models import datos_cuenta
 
+
 class datoscuentaForm(forms.ModelForm):
     class Meta:
         model = datos_cuenta

@@ -4,6 +4,6 @@
 {% else %}
     <h3><b>Resgistro completado...</b></h3> <br><br>
     <h4>Usuario<b></b> se registró con éxito!<p>Por favor, inicie sesión con el correo electrónico y contraseña registrado <b>{{ user.email }}</b></p></h4>
-    <a href="{% url 'sign_in' %}" class="btn green">Iniciar sesión!</a>
+    <a href="{% url 'sign_in' %}" class="btn-large gradient-45deg-green-teal">Inicia sesión!<i class="material-icons right">account_box</i></a>
 {% endif %}
 {% endblock %}

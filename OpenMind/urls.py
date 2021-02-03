@@ -21,6 +21,9 @@ from django.conf.urls import include, url
 from perfiles.views import SignUpView, BienvenidaView, SignInView, SignOutView, RegistroNuevo, ActualizarView, HechoView, TemplateView
 from django.contrib.auth.decorators import login_required
 
+from django.conf import settings
+from django.conf.urls.static import static
+
 urlpatterns = [
     #path('admin/', admin.site.urls),
     url(r'^tipousuarios/', include(('apps.crud_tipousuario.urls', 'apps',), namespace='tipousuario')),
@@ -83,3 +86,5 @@ urlpatterns = [
 
 
     ]
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -10,13 +10,18 @@ class preguntas_test_inteligenciaCreate(CreateView):
     model = preguntas_test_inteligencia
     form_class = preguntas_test_inteligenciaForm
     template_name = 'preguntas/preguntas_form.html'
-    success_url = reverse_lazy('preguntastest:preguntasbuscar')
+    success_url = reverse_lazy('preguntastest:preguntaslistar')
 
 
 class preguntas_test_inteligenciaList(ListView):
-    queryset = preguntas_test_inteligencia.objects.order_by('id_pregunta_test')
+    queryset = preguntas_test_inteligencia.objects.order_by('pregunta')
     template_name = 'preguntas/preguntas_list.html'
     paginate_by = 2
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['filter'] = preguntas_test_inteligenciaFilter(self.request.GET, queryset=self.get_queryset())
+        return context
 
 
 class preguntas_test_inteligenciaUpdate(UpdateView):

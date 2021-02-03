@@ -10,7 +10,7 @@
 	            {% csrf_token %}
 	            {{ form.as_p }}
 	            <button class="btn btn-primary" type="submit">Guardar<i class="material-icons right">send</i></button> &nbsp; &nbsp; &nbsp; &nbsp;
-	            <a class= "btn btn-danger" href="{% url 'ejercicios:ejerciciosbuscar'%}">Cancelar<i class="material-icons right">cancel</i></a>
+	            <a class= "btn btn-danger" href="{% url 'ejercicios:ejercicioslistar'%}">Cancelar<i class="material-icons right">cancel</i></a>
             </form>
         </div>
     </div>
