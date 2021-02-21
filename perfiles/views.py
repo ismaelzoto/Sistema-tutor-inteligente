@@ -89,15 +89,19 @@ class SignUpView(CreateView):
         se redirige a index
         '''
         form.save()
+        '''
+        las siguientes lineas de codigo se utilizan para que al momento de registrarse con exito, 
+        el usuario ingrese directamente al sistema sin tener que iniciar sesion
+        '''
         #usuario = form.cleaned_data.get('username')
         #password = form.cleaned_data.get('password1')
         #usuario = authenticate(username=usuario, password=password)
         #login(self.request, usuario)
-        return redirect('/nuevo-registro/')
+        return redirect('/registro_completado/')
 
 
-class RegistroNuevo(TemplateView):
-    template_name = 'registros/registro_nuevo.html'
+#class RegistroNuevo(TemplateView):
+#    template_name = 'registros/registro_nuevo.html'
 
 
 """

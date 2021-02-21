@@ -15,21 +15,27 @@
                 </tr>
             </thead>
             <tbody>
-		        {% if filter.qs %}
-		        {% for datoscuenta in filter.qs %}
+		        {% if object_list %}
+		        {% for datoscuenta in object_list %}
 		        <tr>
 			        <td>{{ datoscuenta.id_usuario }}</td>
 			        <td>{{ datoscuenta.usuario }}</td>
-			        <td>
-				        <a class="btn btn-primary" href="{% url 'datospersonales:datospersonales_mostrar' datospersonales.id_datos %}">Ver</a>
-				        <a class="btn btn-primary" href="{% url 'datospersonales:datospersonales_editar' datospersonales.id_datos%}">Editar</a>
-				        <a class="btn btn-danger" href="{% url 'datospersonales:datospersonales_eliminar' datospersonales.id_datos %}">Eliminar</a>
+                    <td>
+				         <a class="btn-floating gradient-45deg-amber-amber" href="{% url 'datosusuario:datosusuario_mostrar' datoscuenta.id_usuario %}"><i class="large material-icons">zoom_in</i></a>
+                    </td>
+                    <td>
+				        <a class="btn-floating gradient-45deg-indigo-light-blue" href="{% url 'datosusuario:datosusuario_editar' datoscuenta.id_usuario %}"><i class="large material-icons">create</i></a>
+                    </td>
+                    <td>
+				        <a class="btn-floating red darken-4" href="{% url 'datosusuario:datosusuario_eliminar' datoscuenta.id_usuario %}"><i class="large material-icons">delete</i></a>
 			        </td>
 		        </tr>
 		        {% endfor %}
 
                 {% else %}
-		            <h1>No hay registros</h1>
+		            <tr>
+                        <td colspan="10"><h1>No Existen Registros Personales</h1></td>
+                    </tr>
 		        {% endif %}
             </tbody>
         </table>

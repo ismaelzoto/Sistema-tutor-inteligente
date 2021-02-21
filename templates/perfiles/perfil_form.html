@@ -1,6 +1,6 @@
 {% extends "base/base.html" %}
 
-{% block title %}Registrate{% endblock %}
+{% block title %}Registrarse{% endblock %}
 
 {% block content %}
 {% if user.is_authenticated %}
@@ -176,7 +176,7 @@ body:before {
 
 		//Query All input fields
 		var form_fields = document.getElementsByTagName('input')
-		form_fields[1].placeholder='Usuario...';
+		form_fields[1].placeholder='Nombre de usuario...';
 		form_fields[2].placeholder='Nombre...';
 		form_fields[3].placeholder='name@example.com...';
 		form_fields[4].placeholder='Contraseña...';

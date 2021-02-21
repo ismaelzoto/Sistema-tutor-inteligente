@@ -2,7 +2,7 @@
 
  {% block content %}
 <div class="row">
-        <div class="col-sm-12"> <h3 align="center">Sección Preguntas</h3>
+        <div class="col-sm-12"> <h3 align="center">Buscar preguntas</h3>
 
  <div class="fixed-action-btn" style="width: 200px; height: 550px;">
         <a class="btn-floating btn-large gradient-45deg-deep-purple-blue tooltipped" data-position="top"  data-tooltip="Agregar pregunta" href="{% url 'preguntastest:preguntascrear' %}">
@@ -10,11 +10,11 @@
         </a>
     </div>
 
-      <h4>Buscar</h4> <br>
-            <form method="get" action="{% url 'preguntastest:preguntasbuscar' %}">
-           <div class="col s6 m6 l6">
+<h4>Buscar</h4> <br>
+    <form method="get" action="{% url 'preguntastest:preguntasbuscar' %}">
+        <div class="col s6 m6 l6">
             Nombre de curso: &nbsp {{ filter.form.nombre_ejercicio}}
-               </div>
+         </div>
             <div class="col s2 m2 l2">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
             </div>
@@ -29,9 +29,9 @@
                 <div class="card-content white-text">
 
                     <span class="card-title"> <b>{{ ejercicios.nombre_ejercicio }}</b></span>
-                    <p>ID: {{ ejercicios.id_ejercicio }} </p>
-                    <p>No. pregunta: {{ ejercicios.puntaje }} </p>
-                    <p>Tipo de Inteligencia: {{ ejercicios.temas_curso }} </p>
+                    <!--p>ID: { ejercicios.id_ejercicio }} </p-->
+                    <p><b> Puntaje:</b> {{ ejercicios.puntaje }} </p>
+                    <p><b> Tema:</b> {{ ejercicios.temas_curso }} </p>
                     <!--div class="card-action">
                     </div-->
 

@@ -13,7 +13,7 @@ class datospersonalesCreate(CreateView):
 
 
 class datospersonalesList(ListView):
-    queryset = datos_personales.objects.order_by('id_datos')
+    queryset = datos_personales.objects.order_by('nombre')
     template_name = 'datospersonales/datospersonales_list.html'
 
 
@@ -27,7 +27,7 @@ class datospersonalesUpdate(UpdateView):
 class datospersonalesDelete(DeleteView):
     model = datos_personales
     template_name = 'datospersonales/datospersonales_delete.html'
-    success_url = reverse_lazy('usuario:datospersonales_buscar')
+    success_url = reverse_lazy('usuario:datospersonales_listar')
 
 
 class datospersonalesShow(DetailView):

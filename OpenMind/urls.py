@@ -18,7 +18,7 @@ from django.urls import path
 from django.contrib.auth import views as auth_views
 from django.urls import reverse_lazy
 from django.conf.urls import include, url
-from perfiles.views import SignUpView, BienvenidaView, SignInView, SignOutView, RegistroNuevo, ActualizarView, HechoView, TemplateView
+from perfiles.views import SignUpView, BienvenidaView, SignInView, SignOutView, ActualizarView, HechoView, TemplateView
 from django.contrib.auth.decorators import login_required
 
 from django.conf import settings
@@ -39,10 +39,12 @@ urlpatterns = [
 
     #url(r'^admin/', admin.site.urls),
     url(r'^$', BienvenidaView.as_view(), name='bienvenida'),
-    url(r'^registrate/$', SignUpView.as_view(), name='sign_up'),
-    url(r'^iniciar-sesion/$', SignInView.as_view(), name='sign_in'),
-    url(r'^cerrar-sesion/$', SignOutView.as_view(), name='sign_out'),
-    url(r'^nuevo-registro/$', RegistroNuevo.as_view(), name='registro'),
+    url(r'^registrarse/$', SignUpView.as_view(), name='sign_up'),
+    url(r'^iniciar_sesion/$', SignInView.as_view(), name='sign_in'),
+    url(r'^cerrar_sesion/$', SignOutView.as_view(), name='sign_out'),
+    url(r'^registro_completado/$', view=TemplateView.as_view(template_name='registros/registro_nuevo.html'), name='registro'),
+
+    url(r'^Acerca_de/$', view=TemplateView.as_view(template_name='about.html'), name='acerca_de'),
 
     url(r'^recuperar/contraseña/$', auth_views.PasswordResetView.as_view(
             template_name='registros/password_reset_form.html',

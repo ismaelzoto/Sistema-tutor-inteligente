@@ -101,8 +101,8 @@
 
                     </ul>
 
-                    <li><a href="{% url 'usuario:datospersonales_buscar' %}">Datos de usuario</a></li>
-                    <li><a href="{% url 'datosusuario:datosusuario_buscar' %}">Usuarios</a></li>
+                    <li><a href="{% url 'datosusuario:datosusuario_buscar' %}">Datos de usuario</a></li>
+                    <li><a href="{% url 'usuario:datospersonales_buscar' %}">Usuarios</a></li>
                     <li><a href="{% url 'tipousuario:tipobuscar' %}">Tipos de usuarios</a></li>
 
                     <!--li><a href="% url 'preguntastest:preguntasbuscar' %}">Preguntas</a></li-->
@@ -122,11 +122,11 @@
                     <li><div class="divider"></div></li>
                 {% if user.is_authenticated %}
                       <!--li> <a href="{% url 'password_change' %}">Cambio de contraseña</a></li-->
-                    <li> <a style="background-color: #b4dbed" href="{% url 'sign_out' %}">Cerrar sesión</a></li>
+                    <li> <a style="background-color: #b4dbed" href="{% url 'sign_out' %}">Cerrar sesión<i class="material-icons right">exit_to_app</i></a></li>
                     <li><a class="subheader">&copy; 2021 OpenMind</a></li>
 
                 {% else %}
-                    <li><a href="/about">Acerca de</a></li>
+                    <li><a href="{% url 'acerca_de' %}">Acerca de</a></li>
                     <li><a class="subheader">&copy; 2021 OpenMind</a></li>
                 {% endif %}
                 </ul>

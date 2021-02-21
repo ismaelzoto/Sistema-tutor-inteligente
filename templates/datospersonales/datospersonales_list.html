@@ -6,36 +6,45 @@
         <table class="striped">
 	        <thead>
 		        <tr>
-			        <td>id de datos</td>
-			        <td>nombres</td>
-			        <td>apellido paterno</td>
-                    <td>apellido materno</td>
-			        <td>edad</td>
-                    <td>id de tipo</td>
-                    <td>id de usuarios</td>
+			        <th width="5%">Id de datos</th>
+			        <th width="25%">Nombres</th>
+			        <th width="20%">Apellido paterno</th>
+                    <th width="20%">Apellido materno</th>
+			        <th width="5%">Edad</th>
+                    <th width="5%">Tipo de usuario</th>
+                    <th width="5%">Nombre de usuario</th>
+                    <th width="5%">Mostrar</th>
+                    <th width="5%">Editar</th>
+                    <th width="5%">Borrar</th>
                 </tr>
             </thead>
             <tbody>
 		        {% if object_list %}
-		        {% for datospersonales in object_list %}
+                        {% for datospersonales in object_list %}
 		        <tr>
 			        <td>{{ datospersonales.id_datos }}</td>
 			        <td>{{ datospersonales.nombre }}</td>
 			        <td>{{ datospersonales.a_paterno }}</td>
 			        <td>{{ datospersonales.a_materno }}</td>
 			        <td>{{ datospersonales.edad }}</td>
-			        <td>{{ datospersonales.id_tipo }}</td>
-                    <td>{{ datospersonales.id_usuarios }}</td>
+			        <td>{{ datospersonales.tipo_usuario }}</td>
+                    <td>{{ datospersonales.datos_cuenta }}</td>
 			        <td>
-				        <a class="btn btn-primary" href="{% url 'datospersonales:datospersonales_mostrar' datospersonales.id_datos %}">Ver</a>
-				        <a class="btn btn-primary" href="{% url 'datospersonales:datospersonales_editar' datospersonales.id_datos%}">Editar</a>
-				        <a class="btn btn-danger" href="{% url 'datospersonales:datospersonales_eliminar' datospersonales.id_datos %}">Eliminar</a>
+				         <a class="btn-floating gradient-45deg-amber-amber" href="{% url 'usuario:datospersonales_mostrar' datospersonales.id_datos %}"><i class="large material-icons">search</i></a>
+                    </td>
+                    <td>
+				        <a class="btn-floating gradient-45deg-indigo-light-blue" href="{% url 'usuario:datospersonales_editar' datospersonales.id_datos %}"><i class="large material-icons">create</i></a>
+                    </td>
+                    <td>
+				        <a class="btn-floating red darken-4" href="{% url 'usuario:datospersonales_eliminar' datospersonales.id_datos %}"><i class="large material-icons">delete</i></a>
 			        </td>
 		        </tr>
 		        {% endfor %}
 
                 {% else %}
-		            <h1>No hay registros</h1>
+		            <tr>
+                        <td colspan="10"><h1>No Existen Registros Personales</h1></td>
+                    </tr>
 		        {% endif %}
             </tbody>
         </table>

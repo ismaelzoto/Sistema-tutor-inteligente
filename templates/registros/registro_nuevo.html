@@ -2,8 +2,21 @@
 {% block content %}
 {% if user.is_authenticated %}
 {% else %}
-    <h3><b>Resgistro completado...</b></h3> <br><br>
-    <h4>Usuario<b></b> se registró con éxito!<p>Por favor, inicie sesión con el correo electrónico y contraseña registrado <b>{{ user.email }}</b></p></h4>
-    <a href="{% url 'sign_in' %}" class="btn-large gradient-45deg-green-teal">Inicia sesión!<i class="material-icons right">account_box</i></a>
+    <main role="main" class="container">
+   <div class="starter-template">
+        <h3><b>Resgistro completado...</b></h3> <br><br>
+       <h4>Su cuenta ha sido creada con éxito!</h4> <br> <h4> <p>Por favor, inicie sesión con el usuario y contraseña registrado.</p></h4>
+      <!--h1>Tu usuario ha sido creado con exito</h1-->
+      <p class="lead">Si la página no es redirigida en 5 segundos pulsa <a href="{% url 'sign_in' %}"><b>aquí</b></a></p>
+   </div>
+</main>
+<script>
+   setTimeout(function(){
+       window.location.replace("{% url 'sign_in' %}");
+   }, 9000);
+</script>
+    <!--h3><b>Resgistro completado...</b></h3> <br><br>
+    <h4>Usuario<b></b> se registró con éxito!<p>Por favor, inicie sesión con el correo electrónico y contraseña registrado <b>{ user.email }}</b></p></h4>
+    <a href="% url 'sign_in' %}" class="btn-large gradient-45deg-green-teal">Inicia sesión!<i class="material-icons right">account_box</i></a-->
 {% endif %}
 {% endblock %}

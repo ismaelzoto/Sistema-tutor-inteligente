@@ -1,8 +1,6 @@
 from django.shortcuts import render
 from django.views.generic import CreateView, ListView, DeleteView, DetailView, UpdateView
 from apps.sistema.models import datos_cuenta
-#from perfiles.models import Perfil
-#from perfiles.forms import SignUpForm
 from apps.crud_datos_cuenta.forms import datoscuentaForm
 from apps.crud_datos_cuenta.filters import datoscuentaFilter
 from django.urls import reverse_lazy
@@ -19,9 +17,7 @@ from django.urls import reverse_lazy
 
 class datosusuarioCreate(CreateView):
     model = datos_cuenta
-    #model = Perfil
     form_class = datoscuentaForm
-    #form_class = SignUpForm
     template_name = 'datoscuenta/datoscuenta_form.html'
     success_url = reverse_lazy('datosusuario:datosusuario_buscar')
 
@@ -33,23 +29,19 @@ class datosusuarioList(ListView):
 
 class datosusuarioUpdate(UpdateView):
     model = datos_cuenta
-    #model = Perfil
     form_class = datoscuentaForm
-    #form_class = SignUpForm
     template_name = 'datoscuenta/datoscuenta_editar.html'
     success_url = reverse_lazy('datosusuario:datosusuario_buscar')
 
 
 class datosusuarioDelete(DeleteView):
     model = datos_cuenta
-    #model = Perfil
     template_name = 'datoscuenta/datoscuenta_delete.html'
     success_url = reverse_lazy('datosusuario:datosusuario_buscar')
 
 
 class datosusuarioShow(DetailView):
     model = datos_cuenta
-    #model = Perfil
     template_name = 'datoscuenta/datoscuenta_show.html'
 
 
