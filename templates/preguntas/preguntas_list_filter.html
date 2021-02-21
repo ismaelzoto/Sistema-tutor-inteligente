@@ -3,7 +3,7 @@
 
 {% block content %}
 <div class="row">
-        <div class="col-sm-12"> <h3 align="center">Sección Preguntas</h3>
+        <div class="col-sm-12"> <h3 align="center">Buscar preguntas</h3>
 
  <div class="fixed-action-btn" style="width: 200px; height: 550px;">
         <a class="btn-floating btn-large gradient-45deg-deep-purple-blue tooltipped" data-position="top"  data-tooltip="Agregar pregunta" href="{% url 'preguntastest:preguntascrear' %}">
@@ -30,8 +30,8 @@
                 <div class="card-content white-text">
 
                     <span class="card-title"> <b>{{ preguntas_test_inteligencia.pregunta }}</b></span>
-                    <p>ID: {{ preguntas_test_inteligencia.id_pregunta_test }} </p>
-                    <p>No. pregunta: {{ preguntas_test_inteligencia.num_pregunta }} </p>
+                    <!--p>ID: { preguntas_test_inteligencia.id_pregunta_test }} </p-->
+                    <p>No.pregunta: {{ preguntas_test_inteligencia.num_pregunta }} </p>
                     <p>Tipo de Inteligencia: {{ preguntas_test_inteligencia.inteligencias }} </p>
                     <!--div class="card-action">
                     </div-->
